@@ -1,29 +1,31 @@
+@import "styles.scss";
 
-.description,
-.description {
-  border: 1px #00bcd4 solid;
-  border-radius: 5px;
-  padding: 6px;
-  background: rgba(0, 0, 0, 0.1);
-  color: #00bcd4;
+.description-container {
+  display: flex;
+  flex-direction: column; /* Coloca el label arriba y el input abajo */
+  max-width: 300px; /* Ajusta el ancho del contenedor si es necesario */
 }
 
-.description:focus,
-.description:focus {
-  background: #FBFDCE;
-  color: #FBFDCE;
-}
-
-.description {
-  text-decoration: none;
-  padding: 12px;
+.description-container label {
   font-weight: 600;
-  font-size: 18px;
-  color: #0079FF ;
-  background-color: #FBFDCE;
-  border-radius: 20px;
-  border: 2px solid #2196f3;
-  transition: all 1s ease;
-  -webkit-transition: all 1s ease;
+  font-size: 20px;
+  color: $blue; /* Color del título */
 }
 
+.description {
+  border: none;
+  border-radius: 5px;
+  padding: 1.25rem;
+  background-color: $light-yellow;
+  height: 23.125rem;
+  width: 16.688rem;
+  @include text-jaldi-regular($font-size, $blue);
+}
+
+.description:focus {
+  outline: none;
+}
+
+.description.inner-shadow-top {
+  @include inner-shadow-top;
+}
