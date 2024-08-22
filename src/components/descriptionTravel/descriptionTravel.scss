@@ -1,0 +1,29 @@
+
+.description,
+.description {
+  border: 1px #00bcd4 solid;
+  border-radius: 5px;
+  padding: 6px;
+  background: rgba(0, 0, 0, 0.1);
+  color: #00bcd4;
+}
+
+.description:focus,
+.description:focus {
+  background: #FBFDCE;
+  color: #FBFDCE;
+}
+
+.description {
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #0079FF ;
+  background-color: #FBFDCE;
+  border-radius: 20px;
+  border: 2px solid #2196f3;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+}
+
