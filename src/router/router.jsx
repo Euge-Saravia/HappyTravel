@@ -4,7 +4,7 @@ import Layout from "../layout/Layout";
 import SignIn from "../pages/SignIn";
 import LogIn from "../pages/LogIn";
 import TravelDetails from "../pages/TravelDetails";
-import TravelCard from "../pages/TravelCard";
+import TravelForm from "../pages/TravelForm";
 
 const router = createBrowserRouter([
   {
@@ -29,11 +29,11 @@ const router = createBrowserRouter([
       },
       {
         path: "travel/edit/{id}",
-        element: <TravelCard />,
+        element: <TravelForm />,
       },
       {
         path: "travel/create",
-        element: <TravelCard />,
+        element: <TravelForm />,
       },
     ],
   },
