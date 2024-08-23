@@ -1,15 +1,15 @@
 import { API_GET_TRAVEL } from "../config/url";
 import useApi from "../service/useApi";
-import CardTravel from "../components/cards/CardTravel";
 import Pagination from "../components/pagination/Pagination";
+import HomePage from "../components/views/HomePage";
 
 const Home = () => {
   return (
     <>
-      <CardTravel />
+      <HomePage />
       <Pagination />
     </>
-    );
+  );
 };
 
 export default Home;
