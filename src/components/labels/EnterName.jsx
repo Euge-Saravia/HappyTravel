@@ -1,14 +1,14 @@
 import "./entername.scss";
 
-const EnterName = () => {
+const EnterName = ({name, placeholder}) => {
   return (
     <div className="name-container ">
-      <label  htmlFor="Name">Nombre </label>
+      <label  htmlFor="Name">{name}</label>
       <input
         type="text"
-        name="Name"
+        name={name}
         className="name inner-shadow-top"
-        placeholder="Escribe tu nombre ..."
+        placeholder={placeholder}
       />
     </div>
   );
