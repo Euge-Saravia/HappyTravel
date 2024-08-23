@@ -1,0 +1,15 @@
+@import "../../../styles.scss";
+
+.homePage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media screen and (max-width: 393px)  {
+    .homePage {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+    }
+}
