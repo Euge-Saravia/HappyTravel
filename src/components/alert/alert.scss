@@ -1,0 +1,17 @@
+@import "../../../styles.scss";
+
+.custom-alert {
+    background-color: $light-yellow;
+    border-radius: 1.25rem;
+    Width: 500px;
+    Height: 200px;
+}
+
+.custom-title {
+    @include text-jaldi-regular(1.56rem, $blue);
+}
+
+.buttonsWrapper {
+    display: flex;
+    justify-content: center;
+}
