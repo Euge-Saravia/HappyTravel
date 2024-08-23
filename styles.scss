@@ -1,38 +1,40 @@
 /* Color Variables */
 
-$blue: #0079FF;
-$green: #00DFA2;
-$pink: #FF0060;
-$light-yellow: #FBFDCE;
-$white:#FFFFFF;
+$blue: #0079ff;
+$green: #00dfa2;
+$pink: #ff0060;
+$light-yellow: #fbfdce;
+$white: #ffffff;
 
 @mixin text-jaldi-regular($font-size, $color) {
-    font-family: "Jaldi", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: $font-size;
-    color: $color;
+  font-family: "Jaldi", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: $font-size;
+  color: $color;
 }
 
 @mixin text-jaldi-bold($font-size, $color) {
-    font-family: "Jaldi", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: $font-size;
-    color: $color;
+  font-family: "Jaldi", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: $font-size;
+  color: $color;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    @include text-jaldi-regular(1rem, black);
-    margin: 0;
-    padding: 0;
+  @include text-jaldi-regular(1rem, black);
+  margin: 0;
+  padding: 0;
 }
 
 #root {
-    width: 100vw;
-    height: auto;
+  width: 100vw;
+  height: auto;
 }
