@@ -2,7 +2,6 @@
 
 .form {
     width: 23.125rem;
-    height: 30.438rem;
     border-radius: 1.25rem;
     border: solid 0.25rem $light-yellow;
     margin: 3rem auto;
@@ -10,6 +9,14 @@
     place-content: center;
     place-items: center;
     flex-direction: column;
+}
+
+.oldUser {
+    height: 358px;
+}
+
+.newUser {
+    height: 30.438rem;
 }
 
 p {
@@ -30,9 +37,8 @@ h3 {
     font-size: 20px;
     margin-top: 8px;
 }
+
 span {
     color: $green;
     background-color: $white;
-    
-
 }
