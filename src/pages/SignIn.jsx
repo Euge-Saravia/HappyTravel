@@ -1,13 +1,18 @@
 import Buttons from "../components/buttons/Buttons";
 import EnterName from "../components/labels/EnterName";
+import Title from "../components/labels/Title";
+import "../pages/form.scss";
 
 const SignIn = () => {
   return (
-    <>
-      <p>SignIn</p>
-      <EnterName />
+    <div className="form">
+
+      <Title title="Registro de Usuario"></Title>
+      <EnterName name="Nombre" placeholder={"Escribe tu nombre ..."} />
+      <EnterName name="E-mail" placeholder={"Escribe tu e-mail ..."} />
+      <EnterName name="Contraseña" placeholder={"Escribe tu contraseña ..."} />
       <Buttons />
-    </>
+    </div>
   );
 };
 
