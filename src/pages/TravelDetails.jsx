@@ -1,7 +1,7 @@
+import DetailCard from "../components/cards/DetailCard";
+
 const TravelDetails = () => {
-    return (
-        <p>TravelDetails</p>
-    )
-}
+  return <DetailCard />;
+};
 
 export default TravelDetails;

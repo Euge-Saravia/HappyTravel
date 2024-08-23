@@ -2,19 +2,19 @@
 
 .card {
   background-color: $light-yellow;
-  width: 300px;
-  height: 376px;
-  border-radius: 20px;
-  margin: 20px;
+  width: 18.75rem;
+  height: 23.5rem;
+  border-radius: 1.25rem;
+  margin: 1.25rem;
   position: relative;
 
   .infoCard {
-    margin-left: 21px;
+    margin: 0 1.25rem;
     position: relative;
   }
   h4 {
     @include text-jaldi-bold(25px, $blue);
-    margin-bottom: -6px;
+    margin-bottom: -0.375rem;
   }
 
   h6 {
@@ -22,8 +22,8 @@
   }
 }
 .photo {
-  width: 300px;
-  height: 290px;
-  border-radius: 20px;
-  margin-bottom: -4px;
+  width: 18.75rem;
+  height: 18.75rem;
+  border-radius: 1.25rem;
+  margin-bottom: -0.25rem;
 }

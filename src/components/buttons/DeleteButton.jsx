@@ -1,8 +1,8 @@
-import "./Button.scss";
+import "./buttons.scss";
 const DeleteButton = () => {
   return (
     <button className="deleteButton">
-      <img src="assets/icons/Delete-icon.svg" />
+      <img src="/assets/icons/Delete-icon.svg" />
     </button>
   );
 };

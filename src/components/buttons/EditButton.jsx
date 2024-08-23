@@ -1,8 +1,9 @@
-import "./Button.scss";
+import "./buttons.scss";
+
 const EditButton = () => {
   return (
     <button className="editButton">
-      <img src="assets/icons/Edit-icon.svg" />
+      <img src="/assets/icons/Edit-icon.svg" />
     </button>
   );
 };

@@ -2,7 +2,7 @@ import InfoButton from "../buttons/InfoButton";
 import EditButton from "../buttons/EditButton";
 import DeleteButton from "../buttons/DeleteButton";
 
-import "./CardTravel.scss";
+import "./cardTravel.scss";
 const CardTravel = () => {
   return (
     <div className="card">

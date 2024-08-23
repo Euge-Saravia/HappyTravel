@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
 const CreateButton = () => {
   return (
     <div>
-        <button className='createButton'>
-            <img src="/assets/icons/Create-icon.svg" alt="create icon" />
-        </button>
+      <button className="createButton">
+        <img src="/assets/icons/Create-icon.svg" alt="create icon" />
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default CreateButton
+export default CreateButton;
