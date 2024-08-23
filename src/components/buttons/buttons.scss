@@ -22,3 +22,16 @@
     }
 
 }
+.createButton {
+    display: flex;
+    height: 2.5rem;
+
+  }
+  .logOutButton{
+    display: flex;
+    height: 2.5rem;
+   
+  }
+  button.logOutButton img {
+    transform: translateX(-0.625rem);
+  }

@@ -1,5 +1,7 @@
-import React from "react";
-import "./navbar.scss";
+import React from 'react'
+import "./navbar.scss"
+import CreateButton from '../buttons/CreateButton'
+import LogOutButton from '../buttons/LogOutButton'
 
 const Navbar = () => {
   return (
@@ -17,19 +19,26 @@ const Navbar = () => {
             alt="search"
           />
         </div>
-        <img
-          className="homeImage"
-          src="/assets/icons/Home-icon.svg"
-          alt="home"
-        />
-        <img
-          className="avatarImage"
-          src="/assets/icons/Avatar-icon.svg"
-          alt="avatar"
-        />
+        <button>
+          <img
+            className="homeImage"
+            src="/assets/icons/Home-icon.svg"
+            alt="home"
+          />
+        </button>
+        <CreateButton />
+        <LogOutButton />
+        <button>
+          <img
+            className="avatarImage"
+            src="/assets/icons/Avatar-icon.svg"
+            alt="avatar"
+          />
+        </button>
       </div>
     </div>
   );
 };
 
 export default Navbar;
+
