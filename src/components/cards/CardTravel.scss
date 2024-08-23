@@ -1,0 +1,29 @@
+@import "../../../styles.scss";
+
+.card {
+  background-color: $light-yellow;
+  width: 300px;
+  height: 376px;
+  border-radius: 20px;
+  margin: 20px;
+  position: relative;
+
+  .infoCard {
+    margin-left: 21px;
+    position: relative;
+  }
+  h4 {
+    @include text-jaldi-bold(25px, $blue);
+    margin-bottom: -6px;
+  }
+
+  h6 {
+    @include text-jaldi-regular(20px, $blue);
+  }
+}
+.photo {
+  width: 300px;
+  height: 290px;
+  border-radius: 20px;
+  margin-bottom: -4px;
+}
