@@ -35,3 +35,16 @@
   button.logOutButton img {
     transform: translateX(-0.625rem);
   }
+
+  .pagButton {
+    padding: 0;
+    margin: 0;
+    width: 3.75rem;
+    height: 2.5rem;
+    border-radius: 1.25rem;
+    background-color: $blue;
+    border: none;
+}
+.prev {
+    transform: rotate(180deg);
+}
