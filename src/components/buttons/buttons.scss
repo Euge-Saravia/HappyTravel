@@ -1,0 +1,24 @@
+@import "../../../styles.scss";
+
+
+.buttonsContainer {
+    display: flex;
+    gap: 1rem;
+
+    .btn {
+        @include text-jaldi-bold(1.25rem, $light-yellow);
+        border-radius: 1.25rem;
+        border: none;
+        height: 2.5rem;
+        width: 7.5rem;
+    }
+
+    .acept {
+        background-color: $green;
+    }
+
+    .cancel {
+        background-color: $pink;
+    }
+
+}
