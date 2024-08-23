@@ -5,6 +5,7 @@ $green: #00dfa2;
 $pink: #ff0060;
 $light-yellow: #fbfdce;
 $white: #ffffff;
+$font-size: 20px;
 
 @mixin text-jaldi-regular($font-size, $color) {
   font-family: "Jaldi", sans-serif;
@@ -20,6 +21,7 @@ $white: #ffffff;
   font-style: normal;
   font-size: $font-size;
   color: $color;
+  align-items: left;
 }
 
 * {
@@ -27,6 +29,17 @@ $white: #ffffff;
   margin: 0;
   padding: 0;
 }
+
+@mixin inner-shadow-top(
+  $color: rgba(0, 0, 0, 0.25),
+  $x-offset: 0px,
+  $y-offset: 4px,
+  $blur: 4px,
+  $spread: 0px
+) {
+  box-shadow: inset $x-offset $y-offset $blur $spread $color;
+}
+
 
 body {
   @include text-jaldi-regular(1rem, black);

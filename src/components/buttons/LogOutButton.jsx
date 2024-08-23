@@ -4,7 +4,7 @@ const LogOutButton = () => {
   return (
     <div>
         <button className='logOutButton'>
-        <img src="assets/icons/Logout-icon.svg" alt="logout icon" />
+        <img src="/assets/icons/Logout-icon.svg" alt="logout icon" />
         </button>
         </div>
   )

@@ -1,0 +1,31 @@
+@import "styles.scss";
+
+.description-container {
+  display: flex;
+  flex-direction: column; 
+  max-width: auto; 
+}
+
+.description-container label {
+  font-weight: 600;
+  font-size: 20px;
+  color: $blue; 
+}
+
+.description {
+  border: none;
+  border-radius: 1.25rem;
+  background-color: $light-yellow;
+  height: 23.125rem;
+  width: 18.75rem;
+  padding: 0.313rem 0.313rem 0.313rem 1rem;
+  @include text-jaldi-regular($font-size, $blue);
+}
+
+.description:focus {
+  outline: none;
+}
+
+.description.inner-shadow-top {
+  @include inner-shadow-top;
+}
