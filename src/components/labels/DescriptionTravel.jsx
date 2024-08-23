@@ -4,7 +4,7 @@ import "./descriptionTravel.scss"
 const DescriptionTravel = () => {
   return (
     <div className="description-container ">
-      <label for="DescriptionTravel">¿Por qué quieres viajar allí? </label>
+      <label  htmlFor="DescriptionTravel">¿Por qué quieres viajar allí? </label>
       <textarea maxLength={500} type="text" name="DescriptionTravel" className="description inner-shadow-top"/>
     </div>
   );

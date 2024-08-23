@@ -4,7 +4,7 @@ const CreateButton = () => {
   return (
     <div>
         <button className='createButton'>
-            <img src="assets/icons/Create-icon.svg" alt="create icon" />
+            <img src="/assets/icons/Create-icon.svg" alt="create icon" />
         </button>
     </div>
   )

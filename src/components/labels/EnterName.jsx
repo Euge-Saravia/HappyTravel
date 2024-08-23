@@ -3,7 +3,7 @@ import "./entername.scss";
 const EnterName = () => {
   return (
     <div className="name-container ">
-      <label for="Name">Nombre </label>
+      <label  htmlFor="Name">Nombre </label>
       <input
         type="text"
         name="Name"
