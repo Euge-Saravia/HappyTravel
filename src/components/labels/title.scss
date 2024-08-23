@@ -1,0 +1,11 @@
+@import "../../../styles.scss";
+.formTitle {
+  width: 80%;
+  text-align: center;
+  border-bottom: solid 1px $pink;
+
+  h2 {
+    @include text-jaldi-bold(25px, $pink);
+    padding: 5px;
+  }
+}
