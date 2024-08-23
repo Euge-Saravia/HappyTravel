@@ -1,20 +1,29 @@
 import React from 'react'
 import "./navbar.scss"
+import CreateButton from '../buttons/CreateButton'
+import LogOutButton from '../buttons/LogOutButton'
 
 const Navbar = () => {
   return (
     <div className='navContainer'>
     <div className='logoContainer'>
-        <img className='logoImage' src="public/assets/icons/Logo.svg" alt="logo" />
+        <img className='logoImage' src="assets/icons/Logo.svg" alt="logo" />
     </div>
     
     <div className='userNavContainer'>
     <div className='searchContainer'>
         <input type="text" placeholder='Search...' />
-    <img className='searchImage' src="public/assets/icons/Glass-icon.svg" alt="search" />
+    <img className='searchImage' src="assets/icons/Glass-icon.svg" alt="search" />
     </div>
-        <img className='homeImage' src="public/assets/icons/Home-icon.svg" alt="home" />
-        <img className='avatarImage' src="public/assets/icons/Avatar-icon.svg" alt="avatar" />
+    <button>
+    <img className='homeImage' src="assets/icons/Home-icon.svg" alt="home" />
+    </button>
+    <CreateButton/>
+    <LogOutButton/>
+        <button>
+    <img className='avatarImage' src="assets/icons/Avatar-icon.svg" alt="avatar" />
+        </button>
+        
     </div>
     </div>
   )
