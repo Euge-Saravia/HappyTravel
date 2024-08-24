@@ -1,44 +1,112 @@
 @import "../../styles.scss";
 
 .form {
-    width: 23.125rem;
-    border-radius: 1.25rem;
-    border: solid 0.25rem $light-yellow;
-    margin: 3rem auto;
-    display: flex;
-    place-content: center;
-    place-items: center;
-    flex-direction: column;
+  width: 23.125rem;
+  border-radius: 1.25rem;
+  border: solid 0.25rem $light-yellow;
+  margin: 3rem auto;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  flex-direction: column;
 }
 
 .oldUser {
-    height: 358px;
+  height: 358px;
 }
 
 .newUser {
-    height: 30.438rem;
+  height: 30.438rem;
 }
 
 p {
-    margin: 0 auto;
-    width: 18.75rem;
-    height: 0.688rem;
-    color: $pink;
-    font-size: 1rem;
-    font-weight: 400;
+  margin: 0 auto;
+  width: 18.75rem;
+  height: 0.688rem;
+  color: $pink;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 h3 {
-    width: 272px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    color: $blue;
-    font-size: 20px;
-    margin-top: 8px;
+  width: 272px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  color: $blue;
+  font-size: 20px;
+  margin-top: 8px;
 }
 
 span {
-    color: $green;
-    background-color: $white;
+  color: $green;
+  background-color: $white;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente */
+  height: 100vh; /* Hace que el contenedor ocupe toda la altura de la pantalla */
+  padding: 20px; /* Añade espacio dentro del borde */
+  box-sizing: border-box; /* Incluye el padding y el borde en las dimensiones totales */
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Alinea la columna y la descripción en la parte superior */
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  margin-left: 20px; /* Espacio entre la columna y la descripción */
+}
+
+.border-form {
+  border: 0.3rem solid $light-yellow;
+  padding: 1rem 2rem 1rem 2rem;
+  border-radius: 1.25rem;
+}
+
+.buttons {
+    margin-top: auto; /* Empuja los botones hacia el final de la columna */
+    align-self: flex-end; /* Alinea los botones al final */
+  }
+
+  @media (max-width: 700px) {
+    .container {
+      padding: 10px; /* Ajusta el padding en pantallas pequeñas */
+    }
+  
+    .border-form {
+      padding: 1rem 1.5rem; /* Reduce el padding en pantallas pequeñas */
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: column; /* Organiza los elementos en columna en pantallas pequeñas */
+      align-items: center; /* Centra los elementos horizontalmente */
+    }
+  
+    .column {
+      margin-bottom: 20px; /* Añade espacio entre los elementos de la columna */
+      width: 100%; /* Asegura que la columna ocupe todo el ancho disponible */
+    }
+  
+    .description {
+      margin-bottom: 20px; /* Añade margen inferior para separar la descripción de los botones */
+      width: 100%; /* Asegura que la descripción ocupe todo el ancho disponible */
+    }
+  
+    .buttons {
+      width: 100%; /* Asegura que los botones ocupen todo el ancho disponible */
+      display: flex;
+      justify-content: center; /* Centra los botones horizontalmente */
+    }
+  }
