@@ -2,7 +2,7 @@ import "./entername.scss";
 
 const EnterName = ({name, placeholder}) => {
   return (
-    <div className="name-container ">
+    <div className="name-container">
       <label  htmlFor="Name">{name}</label>
       <input
         type="text"
