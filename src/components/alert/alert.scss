@@ -3,8 +3,8 @@
 .custom-alert {
     background-color: $light-yellow;
     border-radius: 1.25rem;
-    Width: 500px;
-    Height: 200px;
+    Width: 31.25rem;
+    Height: 15.5rem;
 }
 
 .custom-title {
@@ -14,4 +14,11 @@
 .buttonsWrapper {
     display: flex;
     justify-content: center;
+}
+
+@media screen and (max-width: 700px){
+    .custom-alert{
+        width: 20rem;
+        height: 14.06rem;
+    }
 }

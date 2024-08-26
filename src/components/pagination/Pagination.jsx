@@ -6,7 +6,7 @@ const Pagination = () => {
   return (
     <div className="pag">
       <PrevButton />
-      <p className="text-jaldi-bold">1</p>
+      <p className="numPag">1</p>
       <NextButton />
     </div>
   );

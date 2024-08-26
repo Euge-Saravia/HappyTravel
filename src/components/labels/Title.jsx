@@ -1,7 +1,7 @@
 import "./title.scss";
-const Title = ({ title }) => {
+const Title = ({ title, width = '80%' }) => {
   return (
-    <div className="formTitle">
+    <div className="formTitle" style={{ width }}>
       <h2>{title}</h2>
     </div>
   );
