@@ -11,10 +11,10 @@ const TravelForm = () => {
         <Title title={"Crear destino"} className="title" width="99.5%" />
         <div className="content">
           <div className="column">
-            <Field name="Título" placeholder={"Escribe un título ..."} />
+            <Field field="Título" placeholder={"Escribe un título ..."} />
             <p>título requerido</p>
             <Field
-              name="Ubicación"
+              field="Ubicación"
               placeholder={"Escribe una ubicación ..."}
             />
             <InputFile />
