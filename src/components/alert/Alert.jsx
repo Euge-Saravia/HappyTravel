@@ -8,6 +8,7 @@ const MySwal = withReactContent(Swal);
 
 const Alert = ({ title }) => {
   const handleClick = () => {
+    document.body.style.overflow = 'hidden';
     MySwal.fire({
       title: title,
       showCancelButton: false, // se ocultan los botones predeterminados del alert
@@ -22,6 +23,13 @@ const Alert = ({ title }) => {
         popup: "custom-alert",
         title: "custom-title",
       },
+      backdrop: `
+            rgba(0, 0, 0, 10)  // Fondo semitransparente
+          `,
+          willClose: () => {
+            // Restaurar scroll del body al cerrar el alert
+            document.body.style.overflow = 'auto';
+          }
     });
   };
 
