@@ -62,3 +62,10 @@ span {
   @include text-jaldi-regular($font-size, $blue);
 
 } 
+
+@media (max-width: 700px) {
+  .file-container {
+    margin-bottom: 0;
+  }
+}
+

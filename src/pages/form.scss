@@ -46,17 +46,17 @@ span {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra horizontalmente */
-  justify-content: center; /* Centra verticalmente */
-  height: 100vh; /* Hace que el contenedor ocupe toda la altura de la pantalla */
-  padding: 20px; /* Añade espacio dentro del borde */
-  box-sizing: border-box; /* Incluye el padding y el borde en las dimensiones totales */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .content {
   display: flex;
   flex-direction: row;
-  align-items: flex-start; /* Alinea la columna y la descripción en la parte superior */
+  align-items: flex-start;
 }
 
 .column {
@@ -65,7 +65,7 @@ span {
 }
 
 .description {
-  margin-left: 20px; /* Espacio entre la columna y la descripción */
+  margin-left: 20px;
 }
 
 .border-form {
@@ -75,38 +75,46 @@ span {
 }
 
 .buttons {
-    margin-top: auto; /* Empuja los botones hacia el final de la columna */
-    align-self: flex-end; /* Alinea los botones al final */
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 10px;
   }
 
-  @media (max-width: 700px) {
-    .container {
-      padding: 10px; /* Ajusta el padding en pantallas pequeñas */
-    }
-  
-    .border-form {
-      padding: 1rem 1.5rem; /* Reduce el padding en pantallas pequeñas */
-    }
-  
-    .content {
-      display: flex;
-      flex-direction: column; /* Organiza los elementos en columna en pantallas pequeñas */
-      align-items: center; /* Centra los elementos horizontalmente */
-    }
-  
-    .column {
-      margin-bottom: 20px; /* Añade espacio entre los elementos de la columna */
-      width: 100%; /* Asegura que la columna ocupe todo el ancho disponible */
-    }
-  
-    .description {
-      margin-bottom: 20px; /* Añade margen inferior para separar la descripción de los botones */
-      width: 100%; /* Asegura que la descripción ocupe todo el ancho disponible */
-    }
-  
-    .buttons {
-      width: 100%; /* Asegura que los botones ocupen todo el ancho disponible */
-      display: flex;
-      justify-content: center; /* Centra los botones horizontalmente */
-    }
+  .border-form {
+    padding: 1rem 1.5rem;
+    position: relative;
   }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .column {
+    margin-bottom: 20px;
+    margin-left: none;
+    width: 100%;
+  }
+
+  .description {
+    margin-bottom: 20px;
+  }
+
+  .buttonsContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    align-self: center;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .description-container {
+    padding-bottom: 3rem;
+  }
+}

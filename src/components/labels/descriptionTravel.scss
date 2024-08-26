@@ -32,3 +32,24 @@
 .description.inner-shadow-top {
   @include inner-shadow-top;
 }
+
+
+@media (max-width: 700px) {
+  
+  .description.inner-shadow-top{
+    margin-left: 0;
+   
+  }
+
+  .description-container{
+    margin-left: 0;
+    
+  }
+
+  .description-container label {
+    margin-left: 0;
+  }
+
+  
+
+}
