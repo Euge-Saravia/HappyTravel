@@ -1,16 +1,22 @@
 import { useState } from "react";
-import useApi from "../service/useApi";
 import { API_POST_USER } from "../config/url";
 import Buttons from "../components/buttons/Buttons";
 import Field from "../components/labels/Field";
 import Title from "../components/labels/Title";
 import "../pages/form.scss";
+import { useMutation } from "react-query";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const navigator = useNavigate();
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
+  });
+  const mutation = useMutation((data) => {
+    return axios.post(API_POST_USER, data);
   });
 
   const handleChange = (e) => {
@@ -23,26 +29,18 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const response = await useApi(API_POST_USER, "POST", form);
-
-      if (response.ok) {
-        console.log("Usuario registrado con éxito");
-      } else {
-        console.log("Error en el registro");
-      }
-    } catch (error) {
-      console.error("Error al enviar el formulario:", error);
-    }
+    mutation.mutate(form);
   };
 
   const handleCancel = () => {
     setForm({ name: "", email: "", password: "" });
+    navigator("/");
   };
 
+  const axiosErrorResponse = mutation.error?.response;
+
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form">
       <Title title="Registro de Usuario"></Title>
       <Field
         field="Nombre"
@@ -72,8 +70,10 @@ const SignIn = () => {
       <br />
       <Buttons onAccept={handleSubmit} onCancel={handleCancel} />
       <h3>¿Ya tienes cuenta? Accede aqui</h3>
+      {axiosErrorResponse?.status === 409 && (
+        <p>Correo electrónico ya en uso.</p>
+      )}
     </form>
   );
 };
-
 export default SignIn;
