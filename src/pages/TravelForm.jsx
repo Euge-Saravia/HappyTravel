@@ -1,7 +1,7 @@
 import Title from "../components/labels/Title";
 import DescriptionTravel from "../components/labels/DescriptionTravel";
 import InputFile from "../components/labels/InputFile";
-import EnterName from "../components/labels/EnterName";
+import Field from "../components/labels/Field";
 import Buttons from "../components/buttons/Buttons";
 
 const TravelForm = () => {
@@ -11,9 +11,9 @@ const TravelForm = () => {
         <Title title={"Crear destino"} className="title" width="99.5%" />
         <div className="content">
           <div className="column">
-            <EnterName name="Título" placeholder={"Escribe un título ..."} />
+            <Field name="Título" placeholder={"Escribe un título ..."} />
             <p>título requerido</p>
-            <EnterName
+            <Field
               name="Ubicación"
               placeholder={"Escribe una ubicación ..."}
             />
