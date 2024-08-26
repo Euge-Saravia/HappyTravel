@@ -19,6 +19,7 @@ const Navbar = () => {
             alt="search"
           />
         </div>
+        <div className='fixedButton'>
         <button>
           <img
             className="homeImage"
@@ -35,6 +36,7 @@ const Navbar = () => {
             alt="avatar"
           />
         </button>
+        </div>
       </div>
     </div>
   );
