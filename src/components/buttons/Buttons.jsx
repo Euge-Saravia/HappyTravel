@@ -1,13 +1,17 @@
 import "./buttons.scss";
 import "../../../styles.scss";
 
-const Buttons = () => {
+const Buttons = ({ onAccept, onCancel }) => {
   return (
     <div className="buttonsContainer">
-    <button className="btn acept">Aceptar</button>
-    <button className="btn cancel">Cancelar</button>
+      <button className="btn acept" onClick={onAccept}>
+        Aceptar
+      </button>
+      <button className="btn cancel" onClick={onCancel}>
+        Cancelar
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default Buttons
+export default Buttons;
