@@ -17,7 +17,7 @@
   align-items: center;
   max-width: 18.75rem;
   width: 100%;
-  position: relative; 
+  position: relative;
 }
 
 .file-input {
@@ -44,19 +44,18 @@
   width: 1.876rem;
 }
 
-span {
+.imgText {
   background-color: $light-yellow;
   padding: 0.8rem;
   border-radius: 0 1.25rem 1.25rem 0;
   max-width: 18.75rem;
   height: 2.5rem;
   line-height: normal;
-  text-align: left; 
-  display: flex; 
-  align-items: center; 
+  text-align: left;
+  display: flex;
+  align-items: center;
   width: 100%;
   flex: 1;
   @include inner-shadow-top($x-offset: 4px);
   @include text-jaldi-regular($font-size, $blue);
-
-} 
+}

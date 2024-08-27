@@ -1,7 +1,6 @@
 import Buttons from "../components/buttons/Buttons";
 import Field from "../components/labels/Field";
 import Title from "../components/labels/Title";
-import "../pages/form.scss";
 
 const LogIn = () => {
   return (
