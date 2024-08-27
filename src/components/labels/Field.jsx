@@ -1,6 +1,6 @@
 import "./field.scss";
 
-const Field = ({ field, name, placeholder, value, onchange, type }) => {
+const Field = ({ field, name, placeholder, value, onchange, type, error }) => {
   return (
     <div className="name-container">
       <label htmlFor="Name">{field}</label>
@@ -12,6 +12,7 @@ const Field = ({ field, name, placeholder, value, onchange, type }) => {
         value={value}
         onChange={onchange}
       />
+      {error && <p className="invalidInputText">{error}</p>}
     </div>
   );
 };

@@ -40,7 +40,6 @@ $font-size: 20px;
   box-shadow: inset $x-offset $y-offset $blur $spread $color;
 }
 
-
 body {
   @include text-jaldi-regular(1rem, black);
   margin: 0;
@@ -50,4 +49,8 @@ body {
 #root {
   width: 100vw;
   height: auto;
+}
+
+main {
+  height: 100vh;
 }

@@ -2,14 +2,14 @@
 
 .name-container {
   display: flex;
-  flex-direction: column; 
-  max-width: 18.75rem; 
+  flex-direction: column;
+  max-width: 18.75rem;
 }
 
 .name-container label {
   font-weight: 600;
   font-size: 20px;
-  color: $blue; 
+  color: $blue;
   margin-top: 20px;
 }
 
@@ -18,17 +18,13 @@
   border-radius: 1.25rem;
   padding: 0.313rem 0.313rem 0.313rem 1rem;
   background-color: $light-yellow;
-  
-  
-
 
   @include text-jaldi-regular($font-size, $blue);
 
   &::placeholder {
-    color: $blue; 
-    opacity: 1; 
+    color: $blue;
+    opacity: 1;
   }
-
 }
 
 .name:focus {
@@ -41,4 +37,11 @@
   @include inner-shadow-top;
 }
 
-
+.invalidInputText {
+  margin: 0 auto;
+  width: 18.75rem;
+  height: 0.688rem;
+  color: $pink;
+  font-size: 1rem;
+  font-weight: 400;
+}
