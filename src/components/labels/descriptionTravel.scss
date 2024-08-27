@@ -4,12 +4,15 @@
   display: flex;
   flex-direction: column; 
   max-width: auto; 
+  margin-top: 1.25rem;
+  margin-left: 1rem;
 }
 
 .description-container label {
   font-weight: 600;
   font-size: 20px;
   color: $blue; 
+  margin-left: 1.25rem;
 }
 
 .description {
@@ -28,4 +31,25 @@
 
 .description.inner-shadow-top {
   @include inner-shadow-top;
+}
+
+
+@media (max-width: 700px) {
+  
+  .description.inner-shadow-top{
+    margin-left: 0;
+   
+  }
+
+  .description-container{
+    margin-left: 0;
+    
+  }
+
+  .description-container label {
+    margin-left: 0;
+  }
+
+  
+
 }

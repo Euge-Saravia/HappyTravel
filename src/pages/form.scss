@@ -1,0 +1,120 @@
+@import "../../styles.scss";
+
+.form {
+  width: 23.125rem;
+  border-radius: 1.25rem;
+  border: solid 0.25rem $light-yellow;
+  margin: 3rem auto;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  flex-direction: column;
+}
+
+.oldUser {
+  height: 358px;
+}
+
+.newUser {
+  height: 30.438rem;
+}
+
+p {
+  margin: 0 auto;
+  width: 18.75rem;
+  height: 0.688rem;
+  color: $pink;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+h3 {
+  width: 272px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  color: $blue;
+  font-size: 20px;
+  margin-top: 8px;
+}
+
+span {
+  color: $green;
+  background-color: $white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  margin-left: 20px;
+}
+
+.border-form {
+  border: 0.3rem solid $light-yellow;
+  padding: 1rem 2rem 1rem 2rem;
+  border-radius: 1.25rem;
+}
+
+.buttons {
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 10px;
+  }
+
+  .border-form {
+    padding: 1rem 1.5rem;
+    position: relative;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .column {
+    margin-bottom: 20px;
+    margin-left: none;
+    width: 100%;
+  }
+
+  .description {
+    margin-bottom: 20px;
+  }
+
+  .buttonsContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    align-self: center;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .description-container {
+    padding-bottom: 3rem;
+  }
+}

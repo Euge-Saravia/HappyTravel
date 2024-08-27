@@ -1,7 +1,7 @@
-import React from 'react'
 import "./navbar.scss"
-import CreateButton from '../buttons/CreateButton'
-import LogOutButton from '../buttons/LogOutButton'
+import CreateButton from '../buttons/CreateButton';
+import LogOutButton from '../buttons/LogOutButton';
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -19,6 +19,8 @@ const Navbar = () => {
             alt="search"
           />
         </div>
+        <div className='fixedButton'>
+        <Link to="/">
         <button>
           <img
             className="homeImage"
@@ -26,8 +28,10 @@ const Navbar = () => {
             alt="home"
           />
         </button>
+        </Link>
         <CreateButton />
         <LogOutButton />
+        <Link to="/signin">
         <button>
           <img
             className="avatarImage"
@@ -35,6 +39,8 @@ const Navbar = () => {
             alt="avatar"
           />
         </button>
+        </Link>
+        </div>
       </div>
     </div>
   );

@@ -6,8 +6,15 @@
     justify-content: space-between;
     margin: 0 auto;
 }
-.text-jaldi-bold{
+.numPag{
     color: $blue;
+    width: auto;
     font-size: 1.563rem;
     font-weight: 700;
+}
+@media only screen and (max-width: 700px){
+    .pag {
+        display: none;
+    }
+    
 }
