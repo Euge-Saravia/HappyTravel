@@ -8,11 +8,9 @@ const Buttons = ({ onAccept, onCancel }) => {
       <button className="btn acept" onClick={onAccept}>
         Aceptar
       </button>
-      <Link to="/">
       <button className="btn cancel" onClick={onCancel}>
         Cancelar
       </button>
-      </Link>
     </div>
   );
 };

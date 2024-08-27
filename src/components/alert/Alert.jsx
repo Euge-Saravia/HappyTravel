@@ -7,8 +7,8 @@ import PropTypes from "prop-types";
 const MySwal = withReactContent(Swal);
 
 const Alert = ({ title }) => {
-  const handleClick = () => {
-    document.body.style.overflow = 'hidden';
+  const showAlert = () => {
+    document.body.style.overflow = "hidden";
     MySwal.fire({
       title: title,
       showCancelButton: false, // se ocultan los botones predeterminados del alert
@@ -26,10 +26,10 @@ const Alert = ({ title }) => {
       backdrop: `
             rgba(0, 0, 0, 10)  // Fondo semitransparente
           `,
-          willClose: () => {
-            // Restaurar scroll del body al cerrar el alert
-            document.body.style.overflow = 'auto';
-          }
+      willClose: () => {
+        // Restaurar scroll del body al cerrar el alert
+        document.body.style.overflow = "auto";
+      },
     });
   };
 
@@ -39,9 +39,12 @@ const Alert = ({ title }) => {
   };
 
   return (
-    <div>
-      {/* PROVISORIO, ES PARA PODER VER EL ALERT - HAY QUE ARMAR LA LOGICA DEFINITIVA CUANDO LO USEMOS */}
-      <button onClick={handleClick}>Mostrar Alerta</button>
+    <div className="custom-alert">
+      <p className="custom-title">This is an alert box.</p>
+
+      <div className="buttonsWrapper">
+        <Buttons /> //accept y cancel
+      </div>
     </div>
   );
 };
