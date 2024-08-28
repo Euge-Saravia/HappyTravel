@@ -4,9 +4,13 @@ import AcceptButton from "./AcceptButton";
 import CancelButton from "./CancelButton";
 import { useState } from "react";
 
-const DeleteButton = () => {
+const DeleteButton = ({onDelete}) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleConfirmdelete = () => {
+    onDelete();
+    setIsOpen(false);
+  }
   return (
     <>
       <button className="deleteButton" onClick={() => setIsOpen(true)}>
@@ -15,7 +19,7 @@ const DeleteButton = () => {
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
         <h2 className="message">¿Quieres eliminar este destino?</h2>
         <div className="buttonsContainer">
-          <AcceptButton />
+          <AcceptButton onAccept={handleConfirmdelete} />
           <CancelButton onCancel={() => setIsOpen(false)} />
         </div>
       </Modal>

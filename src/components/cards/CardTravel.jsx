@@ -4,7 +4,7 @@ import DeleteButton from "../buttons/DeleteButton";
 
 import "./cardTravel.scss";
 
-const CardTravel = ({ title, location, img }) => {
+const CardTravel = ({title, location, img, onDelete }) => {
   return (
     <div className="card-container">
         <div  className="card">
@@ -18,7 +18,7 @@ const CardTravel = ({ title, location, img }) => {
             <h4>{title}</h4>
             <h6>{location}</h6>
             <EditButton />
-            <DeleteButton />
+            <DeleteButton onDelete={onDelete} />
           </div>
         </div>
     </div>

@@ -36,12 +36,14 @@ button {
   position: absolute;
   top: 0.75rem;
   right: 2.5rem;
+  cursor: pointer;
 }
 
 .deleteButton {
   position: absolute;
   top: 0.75rem;
   right: 0;
+  cursor: pointer;
 }
 .createButton {
   display: flex;
