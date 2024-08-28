@@ -50,7 +50,7 @@ const HomePage = () => {
           id={travel.id}
           title={travel.title}
           location={travel.location}
-          img="https://cdn.yate.co/img/blog/2023/25/palma-de-mallorca-6kk.jpg"
+          img={travel.image}
           onDelete={() => mutation.mutate(travel.id)}
           onEdit={() => handleEdit(travel.id)}
         />
