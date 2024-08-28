@@ -1,0 +1,91 @@
+@import "../../../styles.scss";
+
+.form {
+    border-radius: 1.25rem;
+    border: solid 0.25rem $light-yellow;
+    margin: 3rem auto;
+    display: flex;
+/*     place-content: center; */
+/*     place-items: center; */
+    flex-direction: column;
+}
+.newTravel {
+    width: 733px;
+    height: 509px;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+}
+p {
+    margin: 0 auto;
+    width: 18.75rem;
+    height: 0.688rem;
+    color: $pink;
+    font-size: 1rem;
+    font-weight: 400;
+}
+.buttonsContainer {
+    display:flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.description {
+    margin-left: 20px;
+}
+.buttons {
+  margin-top: auto;
+  align-self: flex-end;
+}
+.oldUser {
+    width: 23.125rem;
+    height: 358px;
+}
+.newUser {
+    width: 23.125rem;
+    height: 30.438rem;
+}
+
+
+
+@media screen and (max-width: 700px) {
+  .form {
+    justify-content: start;
+    margin: 0 auto;
+    padding-top: 30px;
+  }
+  .content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .column {
+    margin-bottom: 20px;
+    margin-left: none;
+    width: 100%;
+  }
+  .description {
+    margin-bottom: 20px;
+  }
+  .buttonsContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    align-self: center;
+    position: absolute;
+    bottom: 0;
+  }
+  .description-container {
+    padding-bottom: 3rem;
+  }
+  .newTravel {
+    width: 350px;
+    height: 1000px;
+  }
+}
