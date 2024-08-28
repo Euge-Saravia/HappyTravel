@@ -12,6 +12,9 @@
   justify-content: center;
   padding-bottom: 20px;
 }
+.buttonsContainer {
+  position: relative;
+}
 .buttonsContainer + .invalidInputText {
   text-align: center;
   height: fit-content;
