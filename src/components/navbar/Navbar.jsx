@@ -1,9 +1,14 @@
-import "./navbar.scss"
-import CreateButton from '../buttons/CreateButton';
-import LogOutButton from '../buttons/LogOutButton';
-import { Link } from "react-router-dom";
+import "./navbar.scss";
+import CreateButton from "../buttons/CreateButton";
+import LogOutButton from "../buttons/LogOutButton";
+import HomeButton from "../buttons/HomeButton";
+import SignInButton from "../buttons/SignInButton";
+import { useAuth } from "../../context/auth/authContext";
+import Search from "../labels/Search";
 
 const Navbar = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <div className="navContainer">
       <div className="logoContainer">
@@ -11,35 +16,12 @@ const Navbar = () => {
       </div>
 
       <div className="userNavContainer">
-        <div className="searchContainer">
-          <input type="text" placeholder="Search..." />
-          <img
-            className="searchImage"
-            src="/assets/icons/Glass-icon.svg"
-            alt="search"
-          />
-        </div>
-        <div className='fixedButton'>
-        <Link to="/">
-        <button>
-          <img
-            className="homeImage"
-            src="/assets/icons/Home-icon.svg"
-            alt="home"
-          />
-        </button>
-        </Link>
-        <CreateButton />
-        <LogOutButton />
-        <Link to="/signin">
-        <button>
-          <img
-            className="avatarImage"
-            src="/assets/icons/Avatar-icon.svg"
-            alt="avatar"
-          />
-        </button>
-        </Link>
+        <Search />
+        <div className="fixedButton">
+          <HomeButton />
+          {isAuthenticated && <CreateButton />}
+          {isAuthenticated && <LogOutButton />}
+          {!isAuthenticated && <SignInButton />}
         </div>
       </div>
     </div>
@@ -47,4 +29,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
