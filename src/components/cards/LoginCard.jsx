@@ -8,9 +8,11 @@ import { useMutation } from "react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./loginCard.scss";
+import { useAuth } from "../../context/auth/authContext";
 
 const LoginCard = () => {
   const navigator = useNavigate();
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -19,8 +21,16 @@ const LoginCard = () => {
     email: "",
     password: "",
   });
-  const mutation = useMutation((data) => {
-    return axios.post(API_POST_LOG_USER, data);
+  const mutation = useMutation((data) => axios.post(API_POST_LOG_USER, data), {
+    onSuccess: (response) => {
+      const token = response.data; // Asegúrate de que este sea el camino correcto al token
+      localStorage.setItem("token", token);
+      setIsAuthenticated(true);
+      navigator("/");
+    },
+    onError: (error) => {
+      console.error("Error al iniciar sesión:", error);
+    },
   });
 
   const handleChange = (e) => {
@@ -36,8 +46,8 @@ const LoginCard = () => {
     if (validateForm()) {
       mutation.mutate(form);
       if (mutation.isSuccess) {
-        navigator("/travels");
-        const { token } = mutation.data;
+        navigator("/");
+        const token = mutation.data.data;
         localStorage.setItem("token", token);
       }
     }
@@ -95,9 +105,7 @@ const LoginCard = () => {
       <br />
       <Buttons onAccept={handleLogin} onCancel={handleCancel} />
       {axiosErrorResponse?.status === 401 && (
-        <p className="invalidInputText">
-          La dirección de correo electrónico o contraseña no son correctas.
-        </p>
+        <p className="invalidInputText">Contraseña incorrecta.</p>
       )}
       {axiosErrorResponse?.status === 404 && (
         <p className="invalidInputText">
