@@ -12,7 +12,7 @@ import { useAuth } from "../../context/auth/authContext";
 
 const LoginCard = () => {
   const navigator = useNavigate();
-  const { isAuthenticated, setIsAuthenticated } = useAuth();
+  const { setIsAuthenticated } = useAuth();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -23,7 +23,7 @@ const LoginCard = () => {
   });
   const mutation = useMutation((data) => axios.post(API_POST_LOG_USER, data), {
     onSuccess: (response) => {
-      const token = response.data; // Asegúrate de que este sea el camino correcto al token
+      const token = response.data;
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
       navigator("/");
@@ -45,11 +45,6 @@ const LoginCard = () => {
     e.preventDefault();
     if (validateForm()) {
       mutation.mutate(form);
-      if (mutation.isSuccess) {
-        navigator("/");
-        const token = mutation.data.data;
-        localStorage.setItem("token", token);
-      }
     }
   };
 

@@ -23,8 +23,13 @@ const RegisterCard = () => {
     email: "",
     password: "",
   });
-  const mutation = useMutation((data) => {
-    return axios.post(API_POST_USER, data);
+  const mutation = useMutation((data) => axios.post(API_POST_USER, data), {
+    onSuccess: () => {
+      setOpenModal(true);
+    },
+    onError: (error) => {
+      console.error("Error al iniciar sesión:", error);
+    },
   });
 
   const handleChange = (e) => {
@@ -39,14 +44,16 @@ const RegisterCard = () => {
     e.preventDefault();
     if (validateForm()) {
       mutation.mutate(form);
-      if (mutation.isSuccess) {
-        setOpenModal(true);
-      }
     }
   };
 
   const handleCancel = () => {
     setForm({ name: "", email: "", password: "" });
+    navigator("/");
+  };
+
+  const handleAccept = () => {
+    setOpenModal(false);
     navigator("/");
   };
 
@@ -124,14 +131,14 @@ const RegisterCard = () => {
       {axiosErrorResponse?.status === 409 && (
         <p className="invalidInputText">Correo electrónico ya en uso.</p>
       )}
-      {mutation.isSuccess ? (
+      {openModal && (
         <Modal open={openModal} onClose={() => setOpenModal(false)}>
           <h2 className="message">Usuario registrado exitosamente!</h2>
           <div className="buttonsContainer">
-            <AcceptButton onAccept={() => setOpenModal(false)} />
+            <AcceptButton onAccept={handleAccept} />
           </div>
         </Modal>
-      ) : null}
+      )}
     </form>
   );
 };
