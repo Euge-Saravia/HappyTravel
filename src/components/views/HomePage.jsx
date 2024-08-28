@@ -3,6 +3,7 @@ import "./homepage.scss";
 import { API_GET_TRAVELS } from "../../config/url";
 import axios from "axios";
 import { useQueryClient, useMutation, useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 const dataTravels = async () => {
   const { data } = await axios.get(API_GET_TRAVELS);
@@ -15,6 +16,7 @@ const deleteTravel = async (id) => {
 
 const HomePage = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const {
     data: travels,
@@ -27,6 +29,10 @@ const HomePage = () => {
       queryClient.invalidateQueries("travels");
     },
   });
+
+  const handleEdit = (id) => {
+    navigate(`travel/edit/${id}`);
+  }
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -46,6 +52,7 @@ const HomePage = () => {
           location={travel.location}
           img="https://cdn.yate.co/img/blog/2023/25/palma-de-mallorca-6kk.jpg"
           onDelete={() => mutation.mutate(travel.id)}
+          onEdit={() => handleEdit(travel.id)}
         />
       ))}
     </div>
