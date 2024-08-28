@@ -1,0 +1,41 @@
+@import "../../../styles.scss";
+
+.modal {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.75);
+    display:none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.isopen {
+    display: flex;
+}
+.modal-container {
+    position: fixed;
+    width: 500px;
+    height: 200px;
+    background-color: $light-yellow;
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    place-content: center;
+    gap: 1.5rem;
+
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    place-content: center;
+    gap: 1rem;
+
+}
