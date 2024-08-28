@@ -7,9 +7,10 @@ import { API_POST_TRAVEL } from "../config/url";
 import axios from "axios";
 import { useState } from "react";
 import { useMutation } from "react-query";
+import "../pages/form.scss";
 
 const TravelForm = () => {
-  const userId = 2;
+  const userId = localStorage.getItem("token");
   const [image, setImage] = useState("");
 
   const [form, setForm] = useState({

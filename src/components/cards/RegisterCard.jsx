@@ -6,11 +6,13 @@ import Title from "../../components/labels/Title";
 import "./registerCard.scss";
 import { useMutation } from "react-query";
 import axios from "axios";
-import Alert from "../alert/Alert";
+import Modal from "../alert/Modal";
+import AcceptButton from "../buttons/AcceptButton";
 import { Link, useNavigate } from "react-router-dom";
 
 const RegisterCard = () => {
   const navigator = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -37,6 +39,9 @@ const RegisterCard = () => {
     e.preventDefault();
     if (validateForm()) {
       mutation.mutate(form);
+      if (mutation.isSuccess) {
+        setOpenModal(true);
+      }
     }
   };
 
@@ -73,55 +78,61 @@ const RegisterCard = () => {
     setErrors(errorsCopy);
     return valid;
   };
+
   const axiosErrorResponse = mutation.error?.response;
 
   return (
-    <>
-      <form className="form">
-        <Title title="Registro de Usuario"></Title>
-        <Field
-          field="Nombre"
-          type="text"
-          placeholder={"Escribe tu nombre ..."}
-          name="name"
-          value={form.name}
-          onchange={handleChange}
-          error={errors.name}
-        />
-        <Field
-          field="E-mail"
-          type="email"
-          placeholder={"Escribe tu e-mail ..."}
-          name="email"
-          value={form.email}
-          onchange={handleChange}
-          error={errors.email}
-        />
-        <Field
-          field="Contraseña"
-          type="password"
-          placeholder={"Escribe tu contraseña ..."}
-          name="password"
-          value={form.password}
-          onchange={handleChange}
-          error={errors.password}
-        />
-        <br />
-        <Buttons onAccept={handleSubmit} onCancel={handleCancel} />
-        <h3 className="logInText">
-          ¿Ya tienes cuenta? Accede &nbsp;
-          <span>
-            <Link to={"/login"}>aquí</Link>
-          </span>
-        </h3>
-        {axiosErrorResponse?.status === 409 && (
-          <p className="invalidInputText">Correo electrónico ya en uso.</p>
-        )}
-      </form>
+    <form className="form">
+      <Title title="Registro de Usuario"></Title>
+      <Field
+        field="Nombre"
+        type="text"
+        placeholder={"Escribe tu nombre ..."}
+        name="name"
+        value={form.name}
+        onchange={handleChange}
+        error={errors.name}
+      />
+      <Field
+        field="E-mail"
+        type="email"
+        required={true}
+        placeholder={"Escribe tu e-mail ..."}
+        name="email"
+        value={form.email}
+        onchange={handleChange}
+        error={errors.email}
+      />
+      <Field
+        field="Contraseña"
+        type="password"
+        required={true}
+        placeholder={"Escribe tu contraseña ..."}
+        name="password"
+        value={form.password}
+        onchange={handleChange}
+        error={errors.password}
+      />
+      <br />
+      <Buttons onAccept={handleSubmit} onCancel={handleCancel} />
+      <h3 className="logInText">
+        ¿Ya tienes cuenta? Accede &nbsp;
+        <span>
+          <Link to={"/login"}>aquí</Link>
+        </span>
+      </h3>
+      {axiosErrorResponse?.status === 409 && (
+        <p className="invalidInputText">Correo electrónico ya en uso.</p>
+      )}
       {mutation.isSuccess ? (
-        <Alert title={"Se ha creado tu usuario exitosamente."} />
+        <Modal open={openModal} onClose={() => setOpenModal(false)}>
+          <h2 className="message">Usuario registrado exitosamente!</h2>
+          <div className="buttonsContainer">
+            <AcceptButton onAccept={() => setOpenModal(false)} />
+          </div>
+        </Modal>
       ) : null}
-    </>
+    </form>
   );
 };
 export default RegisterCard;

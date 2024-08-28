@@ -12,18 +12,11 @@
   justify-content: center;
   padding-bottom: 20px;
 }
-h3 + .invalidInputText {
-  text-align: center;
+.buttonsContainer {
+  position: relative;
 }
-.logInText {
+.buttonsContainer + .invalidInputText {
+  text-align: center;
+  height: fit-content;
   margin-top: 10px;
-  @include text-jaldi-bold(20px, $blue);
-
-  span {
-    a {
-      text-decoration: none;
-      color: $green;
-      cursor: pointer;
-    }
-  }
 }
