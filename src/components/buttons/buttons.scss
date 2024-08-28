@@ -36,12 +36,14 @@ button {
   position: absolute;
   top: 0.75rem;
   right: 2.5rem;
+  cursor: pointer;
 }
 
 .deleteButton {
   position: absolute;
   top: 0.75rem;
   right: 0;
+  cursor: pointer;
 }
 .createButton {
   display: flex;
@@ -68,6 +70,13 @@ button.logOutButton img {
 .prev {
   transform: rotate(180deg);
 }
+.message {
+  display: flex;
+  justify-content: center;
+  @include text-jaldi-regular(1.56rem, $blue);
+
+}
+
 @media only screen and (max-width: 700px) {
   .createButton {
     display: none

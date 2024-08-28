@@ -51,7 +51,7 @@ const InputFile = ({onChange}) => {
                 />
               </svg>
             </div>
-            <span>Sube una imagen...</span>
+            <span className="imgText">Sube una imagen...</span>
           </div>
         </div>
       );

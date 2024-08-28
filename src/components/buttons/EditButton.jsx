@@ -1,9 +1,9 @@
 import "./buttons.scss";
 
-const EditButton = () => {
+const EditButton = ({onEdit}) => {
   return (
-    <button className="editButton">
-      <img src="/assets/icons/Edit-icon.svg" />
+    <button className="editButton" onClick={onEdit}>
+      <img src="/assets/icons/Edit-icon.svg" alt="Edit"/>
     </button>
   );
 };

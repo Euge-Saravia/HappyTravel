@@ -1,7 +1,6 @@
 @import "../../styles.scss";
 
 .form {
-  width: 23.125rem;
   border-radius: 1.25rem;
   border: solid 0.25rem $light-yellow;
   margin: 3rem auto;
@@ -12,10 +11,12 @@
 }
 
 .oldUser {
+  width: 23.125rem;
   height: 358px;
 }
 
 .newUser {
+  width: 23.125rem;
   height: 30.438rem;
 }
 
@@ -79,42 +80,50 @@ span {
   align-self: flex-end;
 }
 
-@media (max-width: 700px) {
-  .container {
-    padding: 10px;
-  }
+.newTravel  {
+  width: 733px;
+  height: 509px;
+}
 
-  .border-form {
-    padding: 1rem 1.5rem;
-    position: relative;
+@media screen and (max-width: 700px) {
+  .form {
+    justify-content: start;
+    margin:0 auto;
+    padding-top: 30px;
   }
-
   .content {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
-
   .column {
     margin-bottom: 20px;
     margin-left: none;
     width: 100%;
+    
   }
-
   .description {
     margin-bottom: 20px;
-  }
 
+  }
   .buttonsContainer {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin-top: 20px;
     align-self: center;
     position: absolute;
     bottom: 0;
   }
-
   .description-container {
     padding-bottom: 3rem;
   }
+  .newTravel {
+    width: 350px;
+    height: 1000px;
+  }
 }
+
+
+

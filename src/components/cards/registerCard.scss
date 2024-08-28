@@ -1,0 +1,28 @@
+@import "../../../styles.scss";
+
+.form {
+  width: 23.125rem;
+  height: 31.25rem;
+  border-radius: 1.25rem;
+  border: solid 0.25rem $light-yellow;
+  margin: 6.25rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+h3 + .invalidInputText {
+  text-align: center;
+}
+.logInText {
+  margin-top: 10px;
+  @include text-jaldi-bold(20px, $blue);
+
+  span {
+    a {
+      text-decoration: none;
+      color: $green;
+      cursor: pointer;
+    }
+  }
+}
