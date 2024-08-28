@@ -24,11 +24,11 @@ const router = createBrowserRouter([
         element: <LogIn />,
       },
       {
-        path: "travel/details/{id}",
+        path: "travel/details/:id",
         element: <TravelDetails />,
       },
       {
-        path: "travel/edit/{id}",
+        path: "travel/edit/:id",
         element: <TravelForm />,
       },
       {
