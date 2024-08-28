@@ -1,11 +1,42 @@
 import "./inputFile.scss";
 
-const InputFile = () => {
+const InputFile = ({onChange}) => {
+  const presetName = "yu1h90st";
+  const cloudName = "drlqmol4c";
+
+  const handleFileChange = async (e) => {
+      const file = e.target.files[0];
+      const imgUrl = await uploadImage(file);
+      onChange(imgUrl);
+  };
+
+
+  const uploadImage = async (file) => {
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", presetName);
+      try {
+          const response = await fetch(
+              `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+              {
+                  method: "POST",
+                  body: data,
+              }
+          );
+          const file = await response.json();
+          return file.secure_url;
+      } catch (error) {
+          console.error("Error uploading image:", error);
+      }
+  };
+
+
+
     return (
         <div className="file-container">
           <label htmlFor="file-upload" className="file-label">Imagen</label>
           <div className="file-content">
-            <input type="file" id="file-upload" className="file-input"/>
+            <input type="file" id="file-upload" className="file-input" onChange={handleFileChange}/>
             <div className="icon-container">
               <svg
                 width="31"
@@ -27,3 +58,4 @@ const InputFile = () => {
     };
 
 export default InputFile;
+

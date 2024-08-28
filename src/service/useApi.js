@@ -11,6 +11,7 @@ const useApi = (url, method = "GET", body = null) => {
       setError(null);
 
       try {
+        let response;
         if (method === "GET") {
           response = await axios.get(url);
         } else if (method === "POST") {
