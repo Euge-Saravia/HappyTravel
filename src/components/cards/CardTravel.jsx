@@ -3,20 +3,24 @@ import EditButton from "../buttons/EditButton";
 import DeleteButton from "../buttons/DeleteButton";
 
 import "./cardTravel.scss";
-const CardTravel = () => {
+
+const CardTravel = ({ title, location, img }) => {
   return (
-    <div className="card">
-      <img
-        src="https://cdn.yate.co/img/blog/2023/25/palma-de-mallorca-6kk.jpg"
-        className="photo"
-      />
-      <InfoButton />
-      <div className="infoCard">
-        <h4>Isla Azores</h4>
-        <h6>Portugal</h6>
-        <EditButton />
-        <DeleteButton />
-      </div>
+    <div className="card-container">
+        <div  className="card">
+          <img
+            src={img}
+            className="photo"
+            alt={title}
+          />
+          <InfoButton />
+          <div className="infoCard">
+            <h4>{title}</h4>
+            <h6>{location}</h6>
+            <EditButton />
+            <DeleteButton />
+          </div>
+        </div>
     </div>
   );
 };
