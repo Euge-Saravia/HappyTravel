@@ -14,6 +14,7 @@ const HomePage = ({ travels }) => {
   const navigate = useNavigate();
 
   const userId = localStorage.getItem("token");
+  
 
   const mutation = useMutation(deleteTravel, {
     onSuccess: () => {
@@ -27,18 +28,22 @@ const HomePage = ({ travels }) => {
 
   return (
     <div className="homePage">
-      {travels.map((travel) => (
-        <CardTravel
-          key={travel.id}
-          id={travel.id}
-          title={travel.title}
-          location={travel.location}
-          img={travel.image}
-          onDelete={() => mutation.mutate(travel.id)}
-          onEdit={() => handleEdit(travel.id)}
-          showButtons={travel.userById == userId}
-        />
-      ))}
+      {travels.length === 0 ? (
+        <p>No travels available</p>
+      ) : (
+        travels.map((travel) => (
+          <CardTravel
+            key={travel.id}
+            id={travel.id}
+            title={travel.title}
+            location={travel.location}
+            img={travel.image}
+            onDelete={() => mutation.mutate(travel.id)}
+            onEdit={() => handleEdit(travel.id)}
+            showButtons={travel.userById == userId}
+          />
+        ))
+      )}
     </div>
   );
 };
