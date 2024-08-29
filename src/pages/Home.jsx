@@ -1,19 +1,20 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import Pagination from "../components/pagination/Pagination";
 import HomePage from "../components/views/HomePage";
 import { API_GET_TRAVELS } from "../config/url";
 
-const token = localStorage.getItem("token");
 const fetchTravels = async (page, size) => {
-  console.log(localStorage.getItem("token"));
   const { data } = await axios.get(API_GET_TRAVELS, {
     params: { page, size },
-    headers: { token },
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
   });
   return data;
 };
+
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize] = useState(8);
