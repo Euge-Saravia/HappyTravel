@@ -18,6 +18,7 @@ const HomePage = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
+  const userId = localStorage.getItem("token");
   const {
     data: travels,
     isLoading,
@@ -32,7 +33,7 @@ const HomePage = () => {
 
   const handleEdit = (id) => {
     navigate(`travel/edit/${id}`);
-  }
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -42,9 +43,14 @@ const HomePage = () => {
     return <div>Error fetching travels data.</div>;
   }
 
+  const userTravels = travels.filter((travel) => travel.userById == userId);
+  const otherTravels = travels.filter((travel) => travel.userById != userId);
+
+  const sortedTravels = [...userTravels, ...otherTravels];
+
   return (
     <div className="homePage">
-      {travels.map((travel) => (
+      {sortedTravels.map((travel) => (
         <CardTravel
           key={travel.id}
           id={travel.id}
@@ -53,6 +59,7 @@ const HomePage = () => {
           img={travel.image}
           onDelete={() => mutation.mutate(travel.id)}
           onEdit={() => handleEdit(travel.id)}
+          showButtons={travel.userById == userId}
         />
       ))}
     </div>

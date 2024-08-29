@@ -38,7 +38,6 @@ const TravelForm = () => {
     e.preventDefault();
     if (form.title && form.location && form.description) {
       mutation.mutate(form);
-      console.log(form);
       alert("El destino se cargo correctamente");
     } else {
       console.log("Por favor complete todos los campos requeridos.");
