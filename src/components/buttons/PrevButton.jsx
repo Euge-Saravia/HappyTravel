@@ -1,12 +1,9 @@
 import "./buttons.scss";
 
-const PrevButton = () => {
+const PrevButton = ({ onPrevious }) => {
   return (
-    <button className="pagButton">
-      <img
-        src="../../../public/assets/icons/Arrows-icon.svg"
-        className="prev"
-      />
+    <button className="pagButton" onClick={onPrevious}>
+      <img src="/assets/icons/Arrows-icon.svg" className="prev" />
     </button>
   );
 };
