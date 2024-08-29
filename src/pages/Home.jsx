@@ -5,7 +5,7 @@ import Pagination from "../components/pagination/Pagination";
 import HomePage from "../components/views/HomePage";
 import { API_GET_TRAVELS } from "../config/url";
 
-const token = localStorage.getItem("token") ? localStorage.getItem("token") : 0;
+const token = localStorage.getItem("token");
 const fetchTravels = async (page, size) => {
   console.log(localStorage.getItem("token"));
   const { data } = await axios.get(API_GET_TRAVELS, {
