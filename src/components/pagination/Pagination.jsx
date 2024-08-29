@@ -2,12 +2,12 @@ import "./pagination.scss";
 import PrevButton from "../buttons/PrevButton";
 import NextButton from "../buttons/NextButton";
 
-const Pagination = () => {
+const Pagination = ({ onPrevious, onNext, currentPage }) => {
   return (
     <div className="pag">
-      <PrevButton />
-      <p className="numPag">1</p>
-      <NextButton />
+      <PrevButton onPrevious={onPrevious} />
+      <p className="numPag">{currentPage + 1}</p>
+      <NextButton onNext={onNext} />
     </div>
   );
 };

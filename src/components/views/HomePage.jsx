@@ -5,24 +5,15 @@ import axios from "axios";
 import { useQueryClient, useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
-const dataTravels = async () => {
-  const { data } = await axios.get(API_GET_TRAVELS);
-  return data;
-};
-
 const deleteTravel = async (id) => {
   await axios.delete(`${API_GET_TRAVELS}/${id}`);
 };
 
-const HomePage = () => {
+const HomePage = ({ travels }) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const {
-    data: travels,
-    isLoading,
-    isError,
-  } = useQuery("travels", dataTravels);
+  const userId = localStorage.getItem("token");
 
   const mutation = useMutation(deleteTravel, {
     onSuccess: () => {
@@ -32,15 +23,7 @@ const HomePage = () => {
 
   const handleEdit = (id) => {
     navigate(`travel/edit/${id}`);
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error fetching travels data.</div>;
-  }
+  };
 
   return (
     <div className="homePage">
@@ -53,6 +36,7 @@ const HomePage = () => {
           img={travel.image}
           onDelete={() => mutation.mutate(travel.id)}
           onEdit={() => handleEdit(travel.id)}
+          showButtons={travel.userById == userId}
         />
       ))}
     </div>

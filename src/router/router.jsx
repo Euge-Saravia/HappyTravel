@@ -5,6 +5,7 @@ import SignIn from "../pages/SignIn";
 import LogIn from "../pages/LogIn";
 import TravelDetails from "../pages/TravelDetails";
 import TravelForm from "../pages/TravelForm";
+import TravelEdit from "../pages/TravelEdit";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "travel/edit/:id",
-        element: <TravelForm />,
+        element: <TravelEdit />,
       },
       {
         path: "travel/create",

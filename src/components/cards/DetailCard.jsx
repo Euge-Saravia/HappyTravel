@@ -1,33 +1,43 @@
 import "./detailCard.scss";
 import EditButton from "../buttons/EditButton";
 import DeleteButton from "../buttons/DeleteButton";
+import { useMutation } from "react-query";
+import { API_GET_TRAVEL } from "../../config/url";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
 
-const Detail = () => {
+const DetailCard = () => {
+  const [data, setData] = useState(null);
+  const userId = localStorage.getItem("token");
+  const { id } = useParams();
+  const mutation = useMutation(() => axios.get(API_GET_TRAVEL(userId, id)), {
+    onSuccess: (response) => {
+      setData(response?.data);
+    },
+    onError: (error) => {
+      console.error("Error al iniciar sesión:", error);
+    },
+  });
+
+  useEffect(() => {
+    mutation.mutate();
+  }, []);
+
   return (
     <div className="detailCard">
       <div className="imageContainer">
-        <img
-          className="image"
-          src="https://cdn.yate.co/img/blog/2023/25/palma-de-mallorca-6kk.jpg"
-        />
+        <img className="image" src={data?.image} alt={data?.title} />
       </div>
 
       <div className="detailInfo">
         <div className="titleHeader">
-          <h2>Islas Azores</h2>
-          <h4>Portugal</h4>
+          <h2>{data?.title}</h2>
+          <h4>{data?.location}</h4>
         </div>
 
-        <p>
-          Aquí estará la explicación del porque quieres viajar allí y no debe
-          pasarse de más de 500 caracteres. Lorem ipsum dolor sit amet,
-          consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
-          massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-          nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-          eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede
-          justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim
-          justo, rhoncus ut, imperdiet a, venenatis vitae.
-        </p>
+        <p>{data?.description}</p>
         <EditButton />
         <DeleteButton />
       </div>
@@ -35,4 +45,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default DetailCard;
