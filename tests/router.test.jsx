@@ -1,11 +1,9 @@
-// src/__tests__/router.test.jsx
 import { render, screen,} from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import router from '../src/router/router'; 
 import { AuthProvider } from '../src/context/auth/authContext';
 
-// Configura el cliente de react-query si es necesario
 const queryClient = new QueryClient();
 
 describe('Router Tests', () => {
