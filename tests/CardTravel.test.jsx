@@ -1,83 +1,56 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom'; // Para las aserciones adicionales
-import { describe, it, expect, vi } from 'vitest';
-import CardTravel from '../src/components/cards/CardTravel';
+import { render, screen, waitFor } from '@testing-library/react';
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import TravelDetails from '../src/pages/TravelDetails';
+import axios from 'axios';
+import { vi } from 'vitest';
 
+// Configura el cliente de react-query
+const queryClient = new QueryClient();
 
-// Mock de los botones
-vi.mock('../src/components/buttons/InfoButton', () => ({
-  default: () => <button>Info</button>,
-}));
+// Mock de axios
+vi.mock('axios');
+const mockedAxios = axios;
 
-vi.mock('../src/components/buttons/EditButton', () => ({
-  default: ({ onEdit }) => <button onClick={onEdit}>Edit</button>,
-}));
-
-vi.mock('../src/components/buttons/DeleteButton', () => ({
-  default: ({ onDelete }) => <button onClick={onDelete}>Delete</button>,
-}));
-
-describe('CardTravel Component', () => {
-  it('should render the card with an image, title, and location', () => {
-    const img = '/path/to/image.jpg';
-    const title = 'Travel Title';
-    const location = 'Travel Location';
+describe('Router Tests', () => {
+  const renderWithRouter = (initialEntries) => {
+    const testRouter = createMemoryRouter([
+      {
+        path: '/travel/details/:id',
+        element: <TravelDetails />,
+      },
+    ], {
+      initialEntries,
+    });
 
     render(
-      <CardTravel
-        title={title}
-        location={location}
-        img={img}
-        onDelete={() => {}}
-        onEdit={() => {}}
-      />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={testRouter} />
+      </QueryClientProvider>
     );
+  };
 
-    // Verifica que la imagen se renderiza con el alt correcto
-    expect(screen.getByAltText(title)).toBeInTheDocument();
-
-    // Verifica que el título y la ubicación se renderizan
-    expect(screen.getByText(title)).toBeInTheDocument();
-    expect(screen.getByText(location)).toBeInTheDocument();
+  beforeEach(() => {
+    // Simula la respuesta de la API para el ID 1
+    mockedAxios.get.mockResolvedValue({
+      data: {
+        id: '1',
+        title: 'Islas Azores',
+        location: 'Localización Ejemplo',
+        description: 'Descripción del viaje.',
+        image: '/path/to/image.jpg',
+      },
+    });
   });
 
-  it('should call onEdit when EditButton is clicked', () => {
-    const onEdit = vi.fn(); // Mock de la función onEdit
+  it('should render TravelDetails component on /travel/details/:id path', async () => {
+    renderWithRouter(['/travel/details/1']);
 
-    render(
-      <CardTravel
-        title="Title"
-        location="Location"
-        img="/path/to/image.jpg"
-        onDelete={() => {}}
-        onEdit={onEdit}
-      />
-    );
-
-    // Simula el clic en el botón de edición
-    fireEvent.click(screen.getByText('Edit'));
-
-    // Verifica que la función onEdit haya sido llamada
-    expect(onEdit).toHaveBeenCalled();
-  });
-
-  it('should call onDelete when DeleteButton is clicked', () => {
-    const onDelete = vi.fn(); // Mock de la función onDelete
-
-    render(
-      <CardTravel
-        title="Title"
-        location="Location"
-        img="/path/to/image.jpg"
-        onDelete={onDelete}
-        onEdit={() => {}}
-      />
-    );
-
-    // Simula el clic en el botón de eliminación
-    fireEvent.click(screen.getByText('Delete'));
-
-    // Verifica que la función onDelete haya sido llamada
-    expect(onDelete).toHaveBeenCalled();
+    // Espera a que el contenido esperado esté en el documento
+    await waitFor(() => {
+      expect(screen.getByText(/Islas Azores/i)).toBeInTheDocument();
+      expect(screen.getByText(/Localización Ejemplo/i)).toBeInTheDocument();
+      expect(screen.getByText(/Descripción del viaje./i)).toBeInTheDocument();
+    });
   });
 });

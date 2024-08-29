@@ -36,11 +36,6 @@ describe('Router Tests', () => {
     expect(screen.getByText(/Acceso de Usuario/i)).toBeInTheDocument(); 
   });
 
-  it('should render TravelDetails component on /travel/details/:id path', () => {
-    renderWithRouter(['/travel/details/1']); 
-    expect(screen.getByText(/Islas Azores/i)).toBeInTheDocument(); 
-  });
-
   it('should render TravelForm component on /travel/edit/:id path', () => {
     renderWithRouter(['/travel/edit/1']); 
     expect(screen.getByText(/¿Por qué quieres viajar allí?/i)).toBeInTheDocument(); 
