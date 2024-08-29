@@ -1,57 +1,89 @@
 @import "../../../styles.scss";
 
 .form {
-    border-radius: 1.25rem;
-    border: solid 0.25rem $light-yellow;
-    margin: 3rem auto;
-    display: flex;
-/*     place-content: center; */
-/*     place-items: center; */
-    flex-direction: column;
+  border-radius: 1.25rem;
+  border: solid 0.25rem $light-yellow;
+  margin: 3rem auto;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  flex-direction: column;
 }
-.newTravel {
-    width: 733px;
-    height: 509px;
+
+.oldUser {
+  width: 23.125rem;
+  height: 358px;
 }
-.content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+
+.newUser {
+  width: 23.125rem;
+  height: 30.438rem;
 }
-.column {
-    display: flex;
-    flex-direction: column;
-}
+
 p {
-    margin: 0 auto;
-    width: 18.75rem;
-    height: 0.688rem;
-    color: $pink;
-    font-size: 1rem;
-    font-weight: 400;
+  margin: 0 auto;
+  width: 18.75rem;
+  height: 0.688rem;
+  color: $pink;
+  font-size: 1rem;
+  font-weight: 400;
 }
-.buttonsContainer {
-    display:flex;
-    flex-direction: row;
-    gap: 1rem;
+
+h3 {
+  width: 272px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  color: $blue;
+  font-size: 20px;
+  margin-top: 8px;
 }
+
+span {
+  color: $green;
+  background-color: $white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
 .description {
-    margin-left: 20px;
+  margin-left: 20px;
 }
+
+.border-form {
+  border: 0.3rem solid $light-yellow;
+  padding: 1rem 2rem 1rem 2rem;
+  border-radius: 1.25rem;
+}
+
 .buttons {
   margin-top: auto;
   align-self: flex-end;
 }
-.oldUser {
-    width: 23.125rem;
-    height: 358px;
-}
-.newUser {
-    width: 23.125rem;
-    height: 30.438rem;
-}
 
-
+.newTravel {
+  width: 733px;
+  height: 509px;
+}
 
 @media screen and (max-width: 700px) {
   .form {
@@ -89,3 +121,82 @@ p {
     height: 1000px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

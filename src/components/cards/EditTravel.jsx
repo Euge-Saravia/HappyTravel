@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import "./travel.scss";
 
-const NewTravel = () => {
+const EditTravel = () => {
   const userId = localStorage.getItem("token");
   const [image, setImage] = useState("");
 
@@ -30,8 +30,8 @@ const NewTravel = () => {
   };
 
   const url = API_POST_TRAVEL(userId);
-  const mutation = useMutation((newTravelData) => {
-    return axios.post(url, newTravelData);
+  const mutation = useMutation((editTravelData) => {
+    return axios.post(url, editTravelData);
   });
 
   const handleSubmit = (e) => {
@@ -53,7 +53,7 @@ const NewTravel = () => {
       <form>
         <div className="container">
           <div className="border-form">
-            <Title title={"Crear destino"} className="title" width="99.5%" />
+            <Title title={"Editar destino"} className="title" width="99.5%" />
             <div className="content">
               <div className="column">
                 <Field
@@ -94,4 +94,4 @@ const NewTravel = () => {
   );
 };
 
-export default NewTravel;
+export default EditTravel;
