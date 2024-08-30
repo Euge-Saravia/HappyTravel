@@ -4,6 +4,7 @@ import { API_GET_TRAVELS } from "../../config/url";
 import axios from "axios";
 import { useQueryClient, useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth/authContext";
 
 const deleteTravel = async (id) => {
   await axios.delete(`${API_GET_TRAVELS}/${id}`);
@@ -13,8 +14,7 @@ const HomePage = ({ travels }) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const userId = localStorage.getItem("token");
-  
+  const { userId } = useAuth();
 
   const mutation = useMutation(deleteTravel, {
     onSuccess: () => {

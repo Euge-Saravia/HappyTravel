@@ -8,17 +8,30 @@ import axios from "axios";
 import { useState } from "react";
 import { useMutation } from "react-query";
 import "./travel.scss";
+import { useNavigate } from "react-router-dom";
+import Modal from "../alert/Modal";
+import AcceptButton from "../buttons/AcceptButton";
+import { useAuth } from "../../context/auth/authContext";
 
 const NewTravel = () => {
-  const userId = localStorage.getItem("token");
   const [image, setImage] = useState("");
-
+  const [openModal, setOpenModal] = useState(false);
+  const { token } = useAuth();
   const [form, setForm] = useState({
     title: "",
     location: "",
     description: "",
     image: null,
   });
+
+  const [errors, setErrors] = useState({
+    title: "",
+    location: "",
+    description: "",
+    image: null,
+  });
+
+  const navigator = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,23 +42,75 @@ const NewTravel = () => {
     });
   };
 
-  const url = API_POST_TRAVEL(userId);
-  const mutation = useMutation((newTravelData) => {
-    return axios.post(url, newTravelData);
-  });
+  const mutation = useMutation(
+    (newTravelData) => {
+      return axios.post(API_POST_TRAVEL, newTravelData, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+    },
+    {
+      onSuccess: () => {
+        setOpenModal(true);
+        queryClient.invalidateQueries("travels");
+      },
+      onError: (error) => {
+        console.error("Error al agregar un nuevo destino: ", error);
+      },
+    }
+  );
+
+  const validateForm = () => {
+    let valid = true;
+    const errorsCopy = { ...errors };
+
+    if (form.title.trim()) {
+      errorsCopy.title = "";
+    } else {
+      errorsCopy.title = "El título es requerido.";
+      valid = false;
+    }
+
+    if (form.location.trim()) {
+      errorsCopy.location = "";
+    } else {
+      errorsCopy.location = "La locación es requerida.";
+      valid = false;
+    }
+
+    if (form.description.trim()) {
+      errorsCopy.description = "";
+    } else {
+      errorsCopy.description = "La descripción es requerida";
+      valid = false;
+    }
+
+    if (form.image != null) {
+      errorsCopy.image = "";
+    } else {
+      errorsCopy.image = "La imagen es requerida";
+      valid = false;
+    }
+
+    setErrors(errorsCopy);
+    return valid;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (form.title && form.location && form.description) {
+    if (validateForm()) {
       mutation.mutate(form);
-      alert("El destino se cargo correctamente");
-    } else {
-      console.log("Por favor complete todos los campos requeridos.");
     }
   };
 
   const handleCancel = () => {
     setForm({ title: "", location: "", description: "", image: null });
+  };
+
+  const handleAccept = () => {
+    setOpenModal(false);
+    navigator("/");
   };
 
   return (
@@ -63,8 +128,8 @@ const NewTravel = () => {
                   value={form.name}
                   placeholder={"Escribe un título ..."}
                   onchange={handleChange}
+                  error={errors.title}
                 />
-                <p>título requerido</p>
                 <Field
                   field="Ubicación"
                   name="location"
@@ -72,8 +137,12 @@ const NewTravel = () => {
                   value={form.location}
                   placeholder={"Escribe una ubicación ..."}
                   onchange={handleChange}
+                  error={errors.location}
                 />
-                <InputFile onChange={(imgUrl) => setImage(imgUrl)} />
+                <InputFile
+                  onChange={(imgUrl) => setImage(imgUrl)}
+                  error={errors.image}
+                />
                 <Buttons
                   onAccept={handleSubmit}
                   onCancel={handleCancel}
@@ -85,11 +154,22 @@ const NewTravel = () => {
                 value={form.description}
                 onchange={handleChange}
                 className="description"
+                error={errors.description}
               />
             </div>
           </div>
         </div>
       </form>
+      {openModal && (
+        <Modal open={openModal} onClose={() => setOpenModal(false)}>
+          <h2 className="message">
+            Se ha creado un nuevo destino exitosamente!
+          </h2>
+          <div className="buttonsContainer">
+            <AcceptButton onAccept={handleAccept} />
+          </div>
+        </Modal>
+      )}
     </>
   );
 };
