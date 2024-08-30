@@ -9,10 +9,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./loginCard.scss";
 import { useAuth } from "../../context/auth/authContext";
+import Modal from "../alert/Modal";
+import AcceptButton from "../buttons/AcceptButton";
 
 const LoginCard = () => {
   const navigator = useNavigate();
-  const { setToken, setUserId } = useAuth();
+  const { setToken, setUserId, token } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -25,7 +28,7 @@ const LoginCard = () => {
     onSuccess: (response) => {
       setToken(response.data.token);
       setUserId(response.data.userId);
-      navigator("/");
+      setIsOpen(true);
     },
     onError: (error) => {
       console.error("Error al iniciar sesión:", error);
@@ -49,6 +52,10 @@ const LoginCard = () => {
 
   const handleCancel = () => {
     setForm({ email: "", password: "" });
+    navigator("/");
+  };
+  const handleAccept = () => {
+    setIsOpen(false);
     navigator("/");
   };
 
@@ -105,6 +112,14 @@ const LoginCard = () => {
         <p className="invalidInputText">
           La dirección de correo electrónico no esta registrada.
         </p>
+      )}
+      {token && (
+        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+          <h2 className="message">¡Bienvenido a Happy Travel!</h2>
+          <div className="buttonsContainer">
+            <AcceptButton onAccept={handleAccept} />
+          </div>
+        </Modal>
       )}
     </form>
   );
