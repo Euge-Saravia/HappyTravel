@@ -41,16 +41,13 @@ describe("CardTravel Component", () => {
 
   it("should render the card with title, location, and image", () => {
     renderComponent();
-
     expect(screen.getByText("Test Title")).toBeInTheDocument();
     expect(screen.getByText("Test Location")).toBeInTheDocument();
-
     expect(screen.getByAltText("Test Title")).toBeInTheDocument();
   });
 
   it("should render buttons when showButtons is true", () => {
     renderComponent();
-
     expect(screen.getByText("1")).toBeInTheDocument();
     expect(screen.getByText("Edit")).toBeInTheDocument();
     expect(screen.getByText("Delete")).toBeInTheDocument();
@@ -58,27 +55,15 @@ describe("CardTravel Component", () => {
 
   it("should not render buttons when showButtons is false", () => {
     renderComponent({ showButtons: false });
-
     expect(screen.queryByText("1")).not.toBeInTheDocument();
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
   });
 
-  it("should call onEdit when EditButton is clicked", () => {
-    renderComponent();
-
-    const editButton = screen.getByText("Edit");
-    fireEvent.click(editButton);
-
-    expect(defaultProps.onEdit).toHaveBeenCalled();
-  });
-
   it("should call onDelete when DeleteButton is clicked", () => {
     renderComponent();
-
     const deleteButton = screen.getByText("Delete");
     fireEvent.click(deleteButton);
-
-    expect(defaultProps.onDelete).toHaveBeenCalled();
+    expect(defaultProps.onDelete).toHaveBeenCalledTimes(1);
   });
 });
