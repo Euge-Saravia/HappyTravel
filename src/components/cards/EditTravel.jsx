@@ -3,14 +3,14 @@ import DescriptionTravel from "../labels/DescriptionTravel";
 import InputFile from "../labels/InputFile";
 import Field from "../labels/Field";
 import Buttons from "../buttons/Buttons";
-import { API_POST_TRAVEL } from "../../config/url";
+import { API_PUT_TRAVEL } from "../../config/url";
 import axios from "axios";
 import { useState } from "react";
 import { useMutation } from "react-query";
 import "./travel.scss";
 
 const EditTravel = () => {
-  const userId = localStorage.getItem("token");
+  const userId = localStorage.putItem("token");
   const [image, setImage] = useState("");
 
   const [form, setForm] = useState({
@@ -31,14 +31,14 @@ const EditTravel = () => {
 
   const url = API_POST_TRAVEL(userId);
   const mutation = useMutation((editTravelData) => {
-    return axios.post(url, editTravelData);
+    return axios.put(url, editTravelData);
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (form.title && form.location && form.description) {
       mutation.mutate(form);
-      alert("El destino se cargo correctamente");
+      alert("El destino se edito correctamente");
     } else {
       console.log("Por favor complete todos los campos requeridos.");
     }
