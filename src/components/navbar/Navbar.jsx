@@ -7,7 +7,7 @@ import { useAuth } from "../../context/auth/authContext";
 import Search from "../labels/Search";
 
 const Navbar = () => {
-  const { isAuthenticated } = useAuth();
+  const { userId } = useAuth();
 
   return (
     <div className="navContainer">
@@ -19,9 +19,9 @@ const Navbar = () => {
         <Search />
         <div className="fixedButton">
           <HomeButton />
-          {isAuthenticated && <CreateButton />}
-          {isAuthenticated && <LogOutButton />}
-          {!isAuthenticated && <SignInButton />}
+          {userId && <CreateButton />}
+          {userId && <LogOutButton />}
+          {!userId && <SignInButton />}
         </div>
       </div>
     </div>

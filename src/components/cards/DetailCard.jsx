@@ -7,19 +7,26 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import { useAuth } from "../../context/auth/authContext";
 
 const DetailCard = () => {
   const [data, setData] = useState(null);
-  const userId = localStorage.getItem("token");
+  const { token } = useAuth();
   const { id } = useParams();
-  const mutation = useMutation(() => axios.get(API_GET_TRAVEL(userId, id)), {
-    onSuccess: (response) => {
-      setData(response?.data);
-    },
-    onError: (error) => {
-      console.error("Error al iniciar sesión:", error);
-    },
-  });
+  const mutation = useMutation(
+    () =>
+      axios.get(API_GET_TRAVEL(id), {
+        headers: { Authorization: "Bearer " + token },
+      }),
+    {
+      onSuccess: (response) => {
+        setData(response?.data);
+      },
+      onError: (error) => {
+        console.error("Error al obtener el destino", error);
+      },
+    }
+  );
 
   useEffect(() => {
     mutation.mutate();
