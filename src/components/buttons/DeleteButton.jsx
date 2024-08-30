@@ -5,9 +5,8 @@ import CancelButton from "./CancelButton";
 import { useState } from "react";
 import { API_GET_TRAVEL } from "../../config/url";
 import axios from "axios";
-import { toAnimated } from "@cloudinary/url-gen/actions/transcode";
 import { useAuth } from "../../context/auth/authContext";
-import { useMutation, useQueries, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 const DeleteButton = ({ id }) => {
