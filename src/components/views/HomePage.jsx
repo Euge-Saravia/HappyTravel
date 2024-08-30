@@ -13,6 +13,7 @@ const deleteTravel = async (id) => {
 const HomePage = ({ travels }) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
   const { userId } = useAuth();
 
   const mutation = useMutation(deleteTravel, {
@@ -27,18 +28,22 @@ const HomePage = ({ travels }) => {
 
   return (
     <div className="homePage">
-      {travels.map((travel) => (
-        <CardTravel
-          key={travel.id}
-          id={travel.id}
-          title={travel.title}
-          location={travel.location}
-          img={travel.image}
-          onDelete={() => mutation.mutate(travel.id)}
-          onEdit={() => handleEdit(travel.id)}
-          showButtons={travel.userById === userId}
-        />
-      ))}
+      {travels.length === 0 ? (
+        <p>No travels available</p>
+      ) : (
+        travels.map((travel) => (
+          <CardTravel
+            key={travel.id}
+            id={travel.id}
+            title={travel.title}
+            location={travel.location}
+            img={travel.image}
+            onDelete={() => mutation.mutate(travel.id)}
+            onEdit={() => handleEdit(travel.id)}
+            showButtons={travel.userById == userId}
+          />
+        ))
+      )}
     </div>
   );
 };
