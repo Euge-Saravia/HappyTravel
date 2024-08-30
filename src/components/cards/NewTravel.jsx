@@ -11,10 +11,12 @@ import "./travel.scss";
 import { useNavigate } from "react-router-dom";
 import Modal from "../alert/Modal";
 import AcceptButton from "../buttons/AcceptButton";
+import { useAuth } from "../../context/auth/authContext";
 
 const NewTravel = () => {
   const [image, setImage] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const { token } = useAuth();
   const [form, setForm] = useState({
     title: "",
     location: "",
@@ -41,15 +43,17 @@ const NewTravel = () => {
   };
 
   const mutation = useMutation(
-    (newTravelData) =>
-      axios.post(API_POST_TRAVEL, newTravelData, {
+    (newTravelData) => {
+      return axios.post(API_POST_TRAVEL, newTravelData, {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + token,
         },
-      }),
+      });
+    },
     {
-      onSuccess: (response) => {
+      onSuccess: () => {
         setOpenModal(true);
+        queryClient.invalidateQueries("travels");
       },
       onError: (error) => {
         console.error("Error al agregar un nuevo destino: ", error);
