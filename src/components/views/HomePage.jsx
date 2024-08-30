@@ -6,15 +6,16 @@ import { useQueryClient, useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth/authContext";
 
-const deleteTravel = async (id) => {
-  await axios.delete(`${API_GET_TRAVELS}/${id}`);
+const deleteTravel = async (id, token) => {
+  await axios.delete(`${API_GET_TRAVELS}/${id}`, {
+    headers: { Authorization: token },
+  });
 };
 
 const HomePage = ({ travels }) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-
-  const { userId } = useAuth();
+  const { userId, token } = useAuth();
 
   const mutation = useMutation(deleteTravel, {
     onSuccess: () => {
@@ -28,22 +29,18 @@ const HomePage = ({ travels }) => {
 
   return (
     <div className="homePage">
-      {travels.length === 0 ? (
-        <p>No travels available</p>
-      ) : (
-        travels.map((travel) => (
-          <CardTravel
-            key={travel.id}
-            id={travel.id}
-            title={travel.title}
-            location={travel.location}
-            img={travel.image}
-            onDelete={() => mutation.mutate(travel.id)}
-            onEdit={() => handleEdit(travel.id)}
-            showButtons={travel.userById == userId}
-          />
-        ))
-      )}
+      {travels.map((travel) => (
+        <CardTravel
+          key={travel.id}
+          id={travel.id}
+          title={travel.title}
+          location={travel.location}
+          img={travel.image}
+          onDelete={() => mutation.mutate(travel.id, token)}
+          onEdit={() => handleEdit(travel.id)}
+          showButtons={travel.userById === userId}
+        />
+      ))}
     </div>
   );
 };
