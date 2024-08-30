@@ -1,0 +1,55 @@
+@import "styles.scss";
+
+.description-container {
+  display: flex;
+  flex-direction: column; 
+  max-width: auto; 
+  margin-top: 1.25rem;
+  margin-left: 1rem;
+}
+
+.description-container label {
+  font-weight: 600;
+  font-size: 20px;
+  color: $blue; 
+  margin-left: 1.25rem;
+}
+
+.description {
+  border: none;
+  border-radius: 1.25rem;
+  background-color: $light-yellow;
+  height: 23.125rem;
+  width: 18.75rem;
+  padding: 0.313rem 0.313rem 0.313rem 1rem;
+  @include text-jaldi-regular($font-size, $blue);
+}
+
+.description:focus {
+  outline: none;
+}
+
+.description.inner-shadow-top {
+  @include inner-shadow-top;
+}
+
+
+@media (max-width: 700px) {
+  
+  .description.inner-shadow-top{
+    margin-left: 0;
+   
+  }
+
+  .description-container{
+    margin-left: 0;
+    
+  }
+
+  .description-container label {
+    margin-left: 0;
+  }
+
+  
+
+}
