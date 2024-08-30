@@ -12,7 +12,7 @@ import { useAuth } from "../../context/auth/authContext";
 
 const LoginCard = () => {
   const navigator = useNavigate();
-  const { setIsAuthenticated } = useAuth();
+  const { setToken, setUserId } = useAuth();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -23,9 +23,9 @@ const LoginCard = () => {
   });
   const mutation = useMutation((data) => axios.post(API_POST_LOG_USER, data), {
     onSuccess: (response) => {
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-      setIsAuthenticated(true);
+      console.log("Login", response.data);
+      setToken(response.data.token);
+      setUserId(response.data.userId);
       navigator("/");
     },
     onError: (error) => {
