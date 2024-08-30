@@ -7,10 +7,11 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import { useAuth } from "../../context/auth/authContext";
 
 const DetailCard = () => {
   const [data, setData] = useState(null);
-  const userId = localStorage.getItem("token");
+  const { userId } = useAuth();
   const { id } = useParams();
   const mutation = useMutation(() => axios.get(API_GET_TRAVEL(userId, id)), {
     onSuccess: (response) => {

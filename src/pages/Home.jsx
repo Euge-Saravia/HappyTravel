@@ -5,12 +5,18 @@ import Pagination from "../components/pagination/Pagination";
 import HomePage from "../components/views/HomePage";
 import { API_GET_TRAVELS } from "../config/url";
 
-const fetchTravels = async (page, size) => {
+import { useAuth } from "../context/auth/authContext";
+
+const fetchTravels = async (token, page, size) => {
+  let headers = undefined;
+
+  if (token) {
+    headers = { Authorization: `Bearer ${token}` };
+  }
+
   const { data } = await axios.get(API_GET_TRAVELS, {
     params: { page, size },
-    headers: {
-      Authorization: "Bearer " + localStorage.getItem("token"),
-    },
+    headers,
   });
   return data;
 };
@@ -18,10 +24,11 @@ const fetchTravels = async (page, size) => {
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize] = useState(8);
+  const { token } = useAuth();
 
   const { data, isLoading, isError } = useQuery(
     ["travels", currentPage],
-    () => fetchTravels(currentPage, pageSize),
+    () => fetchTravels(token, currentPage, pageSize),
     {
       keepPreviousData: true,
     }

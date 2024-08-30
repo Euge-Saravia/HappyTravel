@@ -5,32 +5,30 @@ import { useState } from "react";
 
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const token = localStorage.getItem("token");
-    return !!token;
+  const [token, setToken] = useState(() => {
+    return localStorage.getItem("token");
+  });
+  const [userId, setUserId] = useState(() => {
+    return localStorage.getItem("loggedInUserId");
   });
 
   useEffect(() => {
-    const handleStorageChange = () => {
-      const token = localStorage.getItem("token");
-      setIsAuthenticated(!!token);
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
+    if (userId && token) {
+      localStorage.setItem("loggedInUserId", userId);
+      localStorage.setItem("token", token);
+    }
+  }, [userId, token]);
 
   const logout = () => {
     localStorage.removeItem("token");
-    setIsAuthenticated(false);
+    localStorage.removeItem("loggedInUserId");
+    setToken(undefined);
+    setUserId(undefined);
   };
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, setIsAuthenticated, logout }}
+      value={{ token, setToken, userId, setUserId, logout }}
     >
       {children}
     </AuthContext.Provider>
