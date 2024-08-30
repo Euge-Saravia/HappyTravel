@@ -14,7 +14,7 @@ const deleteTravel = async (id, token) => {
 
 const HomePage = ({ travels }) => {
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
+
   const { userId, token } = useAuth();
 
   const mutation = useMutation(deleteTravel, {
@@ -22,10 +22,6 @@ const HomePage = ({ travels }) => {
       queryClient.invalidateQueries("travels");
     },
   });
-
-  const handleEdit = (id) => {
-    navigate(`travel/edit/${id}`);
-  };
 
   return (
     <div className="homePage">
@@ -37,7 +33,6 @@ const HomePage = ({ travels }) => {
           location={travel.location}
           img={travel.image}
           onDelete={() => mutation.mutate(travel.id, token)}
-          onEdit={() => handleEdit(travel.id)}
           showButtons={travel.userById === userId}
         />
       ))}
