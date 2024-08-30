@@ -9,7 +9,7 @@ export const API_POST_LOG_USER = API_BASE_URL + "users/login"
 export const API_PUT_TRAVELS = API_BASE_URL + "travels/edit";
 
 
-export const API_GET_TRAVEL = (userId, travelId) => `${API_BASE_URL}auth/${userId}/travels/${travelId}`;
+export const API_GET_TRAVEL = (id) => API_BASE_URL + "travel/" + id;
 
 export const API_POST_TRAVEL = API_BASE_URL + "travel";
 
