@@ -1,4 +1,4 @@
-export const API_BASE_URL = "http://localhost:8080/api/";
+export const API_BASE_URL = "http://localhost:3001/api/";
 
 export const API_GET_TRAVELS = API_BASE_URL + "travels";
 
