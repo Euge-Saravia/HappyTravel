@@ -52,11 +52,9 @@ const EditTravel = () => {
         description: data?.description || "",
         image: data?.image || "",
       });
-      setImage(data.image || ""); // Opcionalmente, también actualiza el estado de la imagen
+      setImage(data.image || "");
     }
   }, [data]);
-
-  console.log(form);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -152,8 +150,9 @@ const EditTravel = () => {
                 value={form.title}
                 placeholder={"Escribe un título ..."}
                 onchange={handleChange}
+                error={errors.title}
               />
-              <p>título requerido</p>
+
               <Field
                 field="Ubicación"
                 name="location"
@@ -161,6 +160,7 @@ const EditTravel = () => {
                 value={form.location}
                 placeholder={"Escribe una ubicación ..."}
                 onchange={handleChange}
+                error={errors.location}
               />
               <InputFile onChange={(imgUrl) => setImage(imgUrl)} />
               <Buttons
@@ -174,6 +174,7 @@ const EditTravel = () => {
               value={form.description}
               onchange={handleChange}
               className="description"
+              error={errors.description}
             />
           </div>
         </div>

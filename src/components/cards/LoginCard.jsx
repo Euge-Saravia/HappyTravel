@@ -23,7 +23,6 @@ const LoginCard = () => {
   });
   const mutation = useMutation((data) => axios.post(API_POST_LOG_USER, data), {
     onSuccess: (response) => {
-      console.log("Login", response.data);
       setToken(response.data.token);
       setUserId(response.data.userId);
       navigator("/");
