@@ -1,55 +1,84 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
-import TravelDetails from "../src/pages/TravelDetails";
-import axios from "axios";
-import { vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import { MemoryRouter } from "react-router-dom";
+import CardTravel from "../src/components/cards/CardTravel";
 
-const queryClient = new QueryClient();
+vi.mock("../src/components/buttons/InfoButton", () => ({
+  __esModule: true,
+  default: (props) => (
+    <button onClick={() => props.onClick()}>{props.id}</button>
+  ),
+}));
 
-vi.mock("axios");
-const mockedAxios = axios;
+vi.mock("../src/components/buttons/EditButton", () => ({
+  __esModule: true,
+  default: (props) => <button onClick={props.onEdit}>Edit</button>,
+}));
 
-describe("Router Tests", () => {
-  const renderWithRouter = (initialEntries) => {
-    const testRouter = createMemoryRouter(
-      [
-        {
-          path: "/travel/details/:id",
-          element: <TravelDetails />,
-        },
-      ],
-      {
-        initialEntries,
-      }
-    );
+vi.mock("../src/components/buttons/DeleteButton", () => ({
+  __esModule: true,
+  default: (props) => <button onClick={props.onDelete}>Delete</button>,
+}));
 
-    render(
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={testRouter} />
-      </QueryClientProvider>
+describe("CardTravel Component", () => {
+  const defaultProps = {
+    title: "Test Title",
+    location: "Test Location",
+    img: "https://via.placeholder.com/150",
+    onDelete: vi.fn(),
+    onEdit: vi.fn(),
+    id: "1",
+    showButtons: true,
+  };
+
+  const renderComponent = (props = {}) => {
+    return render(
+      <MemoryRouter>
+        <CardTravel {...{ ...defaultProps, ...props }} />
+      </MemoryRouter>
     );
   };
 
-  beforeEach(() => {
-    mockedAxios.get.mockResolvedValue({
-      data: {
-        id: "1",
-        title: "Islas Azores",
-        location: "Localización Ejemplo",
-        description: "Descripción del viaje.",
-        image: "/path/to/image.jpg",
-      },
-    });
+  it("should render the card with title, location, and image", () => {
+    renderComponent();
+
+    expect(screen.getByText("Test Title")).toBeInTheDocument();
+    expect(screen.getByText("Test Location")).toBeInTheDocument();
+
+    expect(screen.getByAltText("Test Title")).toBeInTheDocument();
   });
 
-  it("should render TravelDetails component on /travel/details/:id path", async () => {
-    renderWithRouter(["/travel/details/1"]);
+  it("should render buttons when showButtons is true", () => {
+    renderComponent();
 
-    await waitFor(() => {
-      expect(screen.getByText(/Islas Azores/i)).toBeInTheDocument();
-      expect(screen.getByText(/Localización Ejemplo/i)).toBeInTheDocument();
-      expect(screen.getByText(/Descripción del viaje./i)).toBeInTheDocument();
-    });
+    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByText("Edit")).toBeInTheDocument();
+    expect(screen.getByText("Delete")).toBeInTheDocument();
+  });
+
+  it("should not render buttons when showButtons is false", () => {
+    renderComponent({ showButtons: false });
+
+    expect(screen.queryByText("1")).not.toBeInTheDocument();
+    expect(screen.queryByText("Edit")).not.toBeInTheDocument();
+    expect(screen.queryByText("Delete")).not.toBeInTheDocument();
+  });
+
+  it("should call onEdit when EditButton is clicked", () => {
+    renderComponent();
+
+    const editButton = screen.getByText("Edit");
+    fireEvent.click(editButton);
+
+    expect(defaultProps.onEdit).toHaveBeenCalled();
+  });
+
+  it("should call onDelete when DeleteButton is clicked", () => {
+    renderComponent();
+
+    const deleteButton = screen.getByText("Delete");
+    fireEvent.click(deleteButton);
+
+    expect(defaultProps.onDelete).toHaveBeenCalled();
   });
 });

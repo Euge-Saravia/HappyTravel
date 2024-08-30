@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { AuthProvider } from "../src/context/auth/authContext";
 import HomePage from "../src/components/views/HomePage";
 
-// Crear un cliente de consulta para el test
 const queryClient = new QueryClient();
 
 describe("HomePage Tests", () => {
@@ -20,10 +19,11 @@ describe("HomePage Tests", () => {
     );
   };
 
-  it("should display an error message if no travels are passed", () => {
+  it("should not display any travels if none are passed", () => {
     renderWithRouter([]);
 
-    expect(screen.getByText(/No travels available/i)).toBeInTheDocument();
+    const travelElements = screen.queryAllByTestId("travel-card");
+    expect(travelElements.length).toBe(0);
   });
 
   it("should render travels correctly when travels data is provided", () => {

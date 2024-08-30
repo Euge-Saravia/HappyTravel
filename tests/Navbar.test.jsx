@@ -11,7 +11,7 @@ vi.mock("../src/context/auth/authContext", () => ({
 
 describe("Navbar Component", () => {
   it("should render logo and search bar", () => {
-    useAuth.mockReturnValue({ isAuthenticated: false });
+    useAuth.mockReturnValue({ userId: null });
 
     render(
       <MemoryRouter>
@@ -20,12 +20,11 @@ describe("Navbar Component", () => {
     );
 
     expect(screen.getByAltText("logo")).toBeInTheDocument();
-
     expect(screen.getByRole("textbox")).toBeInTheDocument();
   });
 
   it("should render all buttons when user is authenticated", () => {
-    useAuth.mockReturnValue({ isAuthenticated: true });
+    useAuth.mockReturnValue({ userId: "someUserId" });
 
     render(
       <MemoryRouter>
@@ -34,19 +33,13 @@ describe("Navbar Component", () => {
     );
 
     expect(screen.getByRole("button", { name: /home/i })).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: /create icon/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: /logout icon/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: /avatar/i })
-    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /create icon/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /logout icon/i })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /avatar/i })).not.toBeInTheDocument();
   });
 
   it("should render SignInButton when user is not authenticated", () => {
-    useAuth.mockReturnValue({ isAuthenticated: false });
+    useAuth.mockReturnValue({ userId: null });
 
     render(
       <MemoryRouter>
@@ -55,11 +48,7 @@ describe("Navbar Component", () => {
     );
 
     expect(screen.getByRole("button", { name: /avatar/i })).toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: /create icon/i })
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: /logout icon/i })
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /create icon/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /logout icon/i })).not.toBeInTheDocument();
   });
 });
