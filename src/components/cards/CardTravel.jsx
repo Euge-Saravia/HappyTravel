@@ -21,7 +21,7 @@ const CardTravel = ({
         <div className="infoCard">
           <h4>{title}</h4>
           <h6>{location}</h6>
-          {showButtons && <EditButton onEdit={onEdit} />}
+          {showButtons && <EditButton id={id} />}
           {showButtons && <DeleteButton onDelete={onDelete} />}
         </div>
       </div>

@@ -45,7 +45,7 @@ const DetailCard = () => {
         </div>
 
         <p>{data?.description}</p>
-        <EditButton />
+        <EditButton id={id} />
         <DeleteButton />
       </div>
     </div>
